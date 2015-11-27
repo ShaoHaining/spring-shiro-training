@@ -19,6 +19,9 @@ public class ShiroUser implements Serializable {
     public String name;
     public List<Long> roleList;
 
+    public ShiroUser() {
+    }
+
     public ShiroUser(Long id, String loginName, String name, List<Long> roleList) {
         this.id = id;
         this.loginName = loginName;
