@@ -236,6 +236,13 @@
           <artifactId>shiro-cas</artifactId>
           <version>1.2.0</version>
       </dependency>
+      <dependency>
+          <groupId>org.jasig.cas.client</groupId>
+          <artifactId>cas-client</artifactId>
+          <version>3.2.1</version>
+          <type>pom</type>
+      </dependency>
+
   </dependencies>
   <build>
         <plugins>
