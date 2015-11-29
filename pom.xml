@@ -242,7 +242,6 @@
           <version>3.2.1</version>
           <type>pom</type>
       </dependency>
-
   </dependencies>
   <build>
         <plugins>
