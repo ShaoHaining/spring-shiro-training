@@ -85,7 +85,7 @@
                 $.post('${path }/logout', function(result) {
                     if(result.success){
                         progressClose();
-                        window.location.href='https://sso.iqianjin.com:8443/cas/logout';
+                        window.location.href='https://sso.iqianjin.com:8443/cas/logout?service=http://localhost:9090/index.jsp';
                     }
                 }, 'json');
             }
