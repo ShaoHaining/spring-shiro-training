@@ -235,10 +235,4 @@ public class ResourceServiceImpl implements ResourceService {
         }
     }
 
-    public static void main(String[] args) {
-        Long abc = 126L;
-        Long def = 126L;
-        System.out.println(abc == def);
-    }
-
 }

@@ -202,7 +202,7 @@
         </div>
         <P style="padding: 30px 0px 10px; position: relative;">
             <span class="u_logo"></span>
-            <input class="ipt" type="text" name="username" placeholder="请输入用户名或邮箱" value="admin" />
+            <input class="ipt" type="text" name="username" placeholder="请输入用户名或邮箱" value="" />
         </P>
         <P style="position: relative;">
             <span class="p_logo"></span>
@@ -222,7 +222,7 @@
     </form>
 </div>
 <div style="text-align:center;">
-    <p><a href="http://www.dreamlu.net/" target="_blank">如梦技术</a></p>
+    <p><a href="http://www.dreamlu.net/" target="_blank">如梦技术</a><script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256912241'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D1256912241%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></p>
 </div>
 </body>
 </html>

@@ -74,7 +74,6 @@ public class ShiroDbRealm extends AuthorizingRealm {
                     if (StringUtils.isNoneBlank(map.get("url"))) {
                         urlSet.add(map.get("url"));
                     }
-
                 }
             }
         }

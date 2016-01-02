@@ -7,6 +7,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @description：UserVo
+ * @author：zhixuan.wang
+ * @date：2015/10/1 14:51
+ */
 public class UserVo implements Serializable {
     private Long id;
 
@@ -26,7 +31,7 @@ public class UserVo implements Serializable {
 
     private Integer organizationId;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdate;
 
     private String phone;

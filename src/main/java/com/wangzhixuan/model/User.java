@@ -32,7 +32,7 @@ public class User implements Serializable {
 
     private Integer organizationId;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdate;
 
     private String phone;

@@ -5,6 +5,6 @@
     <select id="count" resultType="java.lang.Integer">
         select
         count(*) count
-        from system_account
+        from wx_account
     </select>
 </mapper>

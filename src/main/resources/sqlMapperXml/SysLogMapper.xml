@@ -13,7 +13,6 @@
     id, login_name, role_name, opt_content, client_ip, create_time
   </sql>
 
-
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
@@ -24,7 +23,8 @@
   <select id="findDataGrid" resultMap="BaseResultMap" parameterType="PageInfo">
     select
     <include refid="Base_Column_List" />
-    from syslog
+    from syslog ORDER BY create_time DESC
+    LIMIT #{from}, #{ size}
   </select>
 
   <select id="findDataGridCount" resultType="java.lang.Integer" parameterType="PageInfo">

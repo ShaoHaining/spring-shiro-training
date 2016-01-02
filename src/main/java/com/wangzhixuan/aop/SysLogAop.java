@@ -72,7 +72,7 @@ public class SysLogAop {
                     String loginName = collection.getPrimaryPrincipal().toString();
                     SysLog sysLog = new SysLog();
                     sysLog.setLoginName(loginName);
-                    sysLog.setRoleName("admin");
+                    sysLog.setRoleName(loginName);
                     sysLog.setOptContent(strMessage);
                     if (request != null) {
                         sysLog.setClientIp(request.getRemoteAddr());

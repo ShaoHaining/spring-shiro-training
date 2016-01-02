@@ -83,8 +83,10 @@
 </script>
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
-<div data-options="region:'center',border:true,title:'用户列表'" >
-    <table id="dataGrid" data-options="fit:true,border:false"></table>
-</div>
+<%--<div data-options="region:'center',border:true,title:'用户列表'" >--%>
+    <%--<table id="dataGrid" data-options="fit:true,border:false"></table>--%>
+<%--</div>--%>
+<br/>
+<h1>从库：${count}</h1>
 </body>
 </html>
