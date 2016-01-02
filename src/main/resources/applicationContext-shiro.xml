@@ -15,8 +15,8 @@
 
     <!-- 項目自定义的Realm -->
     <bean id="shiroDbRealm" class="com.wangzhixuan.shiro.ShiroCasRealm">
-        <property name="casServerUrlPrefix" value="https://sso.iqianjin.com:8443/cas/"/>
-        <property name="casService" value="http://localhost:9090/index.jsp"/>
+        <property name="casServerUrlPrefix" value="http://sso.dreamlu.net/"/>
+        <property name="casService" value="http://locahost:8080/index.jsp"/>
     </bean>
 
     <!-- Shiro Filter -->
@@ -24,7 +24,7 @@
         <!-- 安全管理器 -->
         <property name="securityManager" ref="securityManager"/>
         <!-- 默认的登陆访问url -->
-        <property name="loginUrl" value="https://sso.iqianjin.com:8443/cas/login?service=http://localhost:9090/index.jsp"/>
+        <property name="loginUrl" value="http://sso.dreamlu.net/login?service=http://localhost:8080/index.jsp"/>
         <!-- 没有权限跳转的url -->
         <property name="unauthorizedUrl" value="/unauth"/>
         <property name="filterChainDefinitions">
