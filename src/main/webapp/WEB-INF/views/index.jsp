@@ -92,7 +92,7 @@
                 $.post('${path }/logout', function(result) {
                     if(result.success){
                         progressClose();
-                        window.location.href='https://sso.iqianjin.com:8443/cas/logout?service=http://localhost:9090/index.jsp';
+                        window.location.href='http://sso.dreamlu.net/login?service=http://localhost:8080/index.jsp';
                     }
                 }, 'json');
             }
