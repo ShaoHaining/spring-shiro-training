@@ -1,15 +1,16 @@
 package com.wangzhixuan.service.impl;
 
 import com.google.common.collect.Lists;
-import com.wangzhixuan.exception.ServiceException;
+import com.wangzhixuan.common.exception.ServiceException;
+import com.wangzhixuan.common.utils.PageInfo;
 import com.wangzhixuan.mapper.RoleMapper;
 import com.wangzhixuan.mapper.RoleResourceMapper;
 import com.wangzhixuan.mapper.UserRoleMapper;
 import com.wangzhixuan.model.Role;
 import com.wangzhixuan.model.RoleResource;
+import com.wangzhixuan.model.vo.Tree;
 import com.wangzhixuan.service.RoleService;
-import com.wangzhixuan.utils.PageInfo;
-import com.wangzhixuan.vo.Tree;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

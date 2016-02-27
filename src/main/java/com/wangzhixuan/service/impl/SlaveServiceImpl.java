@@ -3,7 +3,7 @@ package com.wangzhixuan.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wangzhixuan.annotation.DataSourceChange;
+import com.wangzhixuan.common.annotation.DataSourceChange;
 import com.wangzhixuan.mapper.SlaveMapper;
 import com.wangzhixuan.service.SlaveService;
 @Service

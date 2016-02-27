@@ -1,9 +1,10 @@
 package com.wangzhixuan.controller;
 
 import com.google.common.collect.Maps;
+import com.wangzhixuan.common.utils.PageInfo;
 import com.wangzhixuan.model.SysLog;
 import com.wangzhixuan.service.LogService;
-import com.wangzhixuan.utils.PageInfo;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

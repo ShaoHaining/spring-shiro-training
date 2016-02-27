@@ -2,14 +2,15 @@ package com.wangzhixuan.service.impl;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import com.wangzhixuan.common.utils.Config;
 import com.wangzhixuan.mapper.ResourceMapper;
 import com.wangzhixuan.mapper.RoleMapper;
 import com.wangzhixuan.mapper.UserRoleMapper;
 import com.wangzhixuan.model.Resource;
 import com.wangzhixuan.model.User;
+import com.wangzhixuan.model.vo.Tree;
 import com.wangzhixuan.service.ResourceService;
-import com.wangzhixuan.utils.Config;
-import com.wangzhixuan.vo.Tree;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

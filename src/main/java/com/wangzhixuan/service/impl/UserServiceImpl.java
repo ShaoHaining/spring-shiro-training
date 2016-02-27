@@ -1,12 +1,13 @@
 package com.wangzhixuan.service.impl;
 
+import com.wangzhixuan.common.utils.PageInfo;
 import com.wangzhixuan.mapper.UserMapper;
 import com.wangzhixuan.mapper.UserRoleMapper;
 import com.wangzhixuan.model.User;
 import com.wangzhixuan.model.UserRole;
+import com.wangzhixuan.model.vo.UserVo;
 import com.wangzhixuan.service.UserService;
-import com.wangzhixuan.utils.PageInfo;
-import com.wangzhixuan.vo.UserVo;
+
 import org.apache.commons.beanutils.PropertyUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

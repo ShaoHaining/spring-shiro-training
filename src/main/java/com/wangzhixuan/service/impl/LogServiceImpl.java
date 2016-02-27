@@ -1,9 +1,10 @@
 package com.wangzhixuan.service.impl;
 
+import com.wangzhixuan.common.utils.PageInfo;
 import com.wangzhixuan.mapper.SysLogMapper;
 import com.wangzhixuan.model.SysLog;
 import com.wangzhixuan.service.LogService;
-import com.wangzhixuan.utils.PageInfo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

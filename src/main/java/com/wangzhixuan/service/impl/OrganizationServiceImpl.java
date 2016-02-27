@@ -3,8 +3,9 @@ package com.wangzhixuan.service.impl;
 import com.google.common.collect.Lists;
 import com.wangzhixuan.mapper.OrganizationMapper;
 import com.wangzhixuan.model.Organization;
+import com.wangzhixuan.model.vo.Tree;
 import com.wangzhixuan.service.OrganizationService;
-import com.wangzhixuan.vo.Tree;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

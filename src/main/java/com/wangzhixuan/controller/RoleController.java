@@ -1,11 +1,12 @@
 package com.wangzhixuan.controller;
 
 import com.google.common.collect.Maps;
-import com.wangzhixuan.code.Result;
+import com.wangzhixuan.common.Result;
+import com.wangzhixuan.common.utils.PageInfo;
 import com.wangzhixuan.model.Role;
+import com.wangzhixuan.model.vo.Tree;
 import com.wangzhixuan.service.RoleService;
-import com.wangzhixuan.utils.PageInfo;
-import com.wangzhixuan.vo.Tree;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

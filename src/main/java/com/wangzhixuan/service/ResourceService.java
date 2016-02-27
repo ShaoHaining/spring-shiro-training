@@ -2,7 +2,7 @@ package com.wangzhixuan.service;
 
 import com.wangzhixuan.model.Resource;
 import com.wangzhixuan.model.User;
-import com.wangzhixuan.vo.Tree;
+import com.wangzhixuan.model.vo.Tree;
 
 import java.util.List;
 

@@ -1,10 +1,11 @@
 package com.wangzhixuan.controller;
 
-import com.wangzhixuan.code.Result;
+import com.wangzhixuan.common.Result;
 import com.wangzhixuan.model.Resource;
 import com.wangzhixuan.model.User;
+import com.wangzhixuan.model.vo.Tree;
 import com.wangzhixuan.service.ResourceService;
-import com.wangzhixuan.vo.Tree;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

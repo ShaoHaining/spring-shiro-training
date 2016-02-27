@@ -1,8 +1,8 @@
 package com.wangzhixuan.service;
 
+import com.wangzhixuan.common.utils.PageInfo;
 import com.wangzhixuan.model.User;
-import com.wangzhixuan.utils.PageInfo;
-import com.wangzhixuan.vo.UserVo;
+import com.wangzhixuan.model.vo.UserVo;
 
 /**
  * @description：用户管理

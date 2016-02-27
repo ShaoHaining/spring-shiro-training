@@ -1,7 +1,7 @@
 package com.wangzhixuan.service;
 
 import com.wangzhixuan.model.Organization;
-import com.wangzhixuan.vo.Tree;
+import com.wangzhixuan.model.vo.Tree;
 
 import java.util.List;
 

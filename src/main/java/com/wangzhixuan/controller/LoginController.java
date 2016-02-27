@@ -1,6 +1,5 @@
 package com.wangzhixuan.controller;
 
-import com.wangzhixuan.code.Result;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -17,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.wangzhixuan.common.Result;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -28,16 +29,6 @@ import javax.servlet.http.HttpServletRequest;
 public class LoginController {
 
     private static Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
-
-    /**
-     * 首页
-     *
-     * @return
-     */
-    @RequestMapping(value = "/")
-    public String index() {
-        return "redirect:/index";
-    }
 
     /**
      * 首页
