@@ -1,14 +1,15 @@
 package com.wangzhixuan.mapper;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.baomidou.mybatisplus.mapper.AutoMapper;
 import com.wangzhixuan.common.utils.PageInfo;
 import com.wangzhixuan.model.User;
 import com.wangzhixuan.model.vo.UserVo;
 
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
-
-public interface UserMapper {
+public interface UserMapper extends AutoMapper<User> {
     /**
      * 删除用户
      *

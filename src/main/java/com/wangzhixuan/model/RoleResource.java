@@ -2,15 +2,22 @@ package com.wangzhixuan.model;
 
 import java.io.Serializable;
 
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+
 /**
  * @description：角色资源关联
  * @author：zhixuan.wang
  * @date：2015/10/1 14:51
  */
+@TableName(value = "role_resource")
 public class RoleResource implements Serializable {
 
+	@TableField(exist = false)
     private static final long serialVersionUID = -7250242744961556986L;
 
+	@TableId(auto = true)
     private Long id;
 
     private Long roleId;

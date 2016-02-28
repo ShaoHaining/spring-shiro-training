@@ -1,24 +1,25 @@
 package com.wangzhixuan.mapper;
 
+import java.util.List;
+
+import com.baomidou.mybatisplus.mapper.AutoMapper;
 import com.wangzhixuan.common.utils.PageInfo;
 import com.wangzhixuan.model.SysLog;
 
-import java.util.List;
+public interface SysLogMapper extends AutoMapper<SysLog> {
+	int deleteByPrimaryKey(Long id);
 
-public interface SysLogMapper {
-    int deleteByPrimaryKey(Long id);
+	int insert(SysLog record);
 
-    int insert(SysLog record);
+	int insertSelective(SysLog record);
 
-    int insertSelective(SysLog record);
+	SysLog selectByPrimaryKey(Long id);
 
-    SysLog selectByPrimaryKey(Long id);
+	int updateByPrimaryKeySelective(SysLog record);
 
-    int updateByPrimaryKeySelective(SysLog record);
+	int updateByPrimaryKey(SysLog record);
 
-    int updateByPrimaryKey(SysLog record);
+	List findDataGrid(PageInfo pageInfo);
 
-    List findDataGrid(PageInfo pageInfo);
-
-    int findDataGridCount(PageInfo pageInfo);
+	int findDataGridCount(PageInfo pageInfo);
 }

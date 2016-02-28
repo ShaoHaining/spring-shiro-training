@@ -1,10 +1,11 @@
 package com.wangzhixuan.mapper;
 
-import com.wangzhixuan.model.Organization;
-
 import java.util.List;
 
-public interface OrganizationMapper {
+import com.baomidou.mybatisplus.mapper.AutoMapper;
+import com.wangzhixuan.model.Organization;
+
+public interface OrganizationMapper extends AutoMapper<Organization> {
     /**
      * 删除部门
      *

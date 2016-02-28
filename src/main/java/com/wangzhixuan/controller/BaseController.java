@@ -1,9 +1,7 @@
 package com.wangzhixuan.controller;
 
-import com.wangzhixuan.common.utils.StringEscapeEditor;
-import com.wangzhixuan.model.User;
-import com.wangzhixuan.service.UserService;
-import com.wangzhixuan.shiro.ShiroUser;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +9,11 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.wangzhixuan.common.Result;
+import com.wangzhixuan.common.utils.StringEscapeEditor;
+import com.wangzhixuan.model.User;
+import com.wangzhixuan.service.UserService;
+import com.wangzhixuan.shiro.ShiroUser;
 
 /**
  * @description：基础 controller
@@ -35,6 +36,30 @@ public class BaseController {
 		 * 防止XSS攻击
 		 */
 		binder.registerCustomEditor(String.class, new StringEscapeEditor(true, false));
+	}
+	
+	protected Result retResult(boolean success) {
+		return retResult(null, null, success);
+	}
+
+	protected Result retResult(String msg, boolean success) {
+		return retResult(msg, null, success);
+	}
+	
+	protected Result retResult(Object obj, boolean success) {
+		return retResult(null, obj, success);
+	}
+	
+	protected Result retResult(String msg, Object obj, boolean success) {
+		Result rlt = new Result();
+		if (msg != null) {
+			rlt.setMsg(msg);
+		}
+		if (obj != null) {
+			rlt.setObj(obj);
+		}
+		rlt.setSuccess(success);
+		return rlt;
 	}
 
 	/**

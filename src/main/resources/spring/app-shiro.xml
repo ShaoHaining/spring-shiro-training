@@ -38,7 +38,7 @@
 
     <!-- 用户授权信息Cache, 采用EhCache -->
     <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-        <property name="cacheManagerConfigFile" value="classpath:ehcache-shiro.xml"/>
+        <property name="cacheManagerConfigFile" value="classpath:xml/ehcache.xml"/>
     </bean>
 
     <!-- 在方法中 注入  securityManager ，进行代理控制 -->

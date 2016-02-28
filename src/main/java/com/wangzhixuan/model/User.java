@@ -1,19 +1,25 @@
 package com.wangzhixuan.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.io.Serializable;
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * @description：用户
  * @author：zhixuan.wang
  * @date：2015/10/1 14:51
  */
+@TableName(value = "user")
 public class User implements Serializable {
 
+	@TableField(exist = false)
     private static final long serialVersionUID = 6700813629656881143L;
 
+	@TableId(auto = true)
     private Long id;
 
     private String loginname;

@@ -1,11 +1,13 @@
 package com.wangzhixuan.mapper;
 
-import com.wangzhixuan.model.Resource;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
 
-public interface ResourceMapper {
+import org.apache.ibatis.annotations.Param;
+
+import com.baomidou.mybatisplus.mapper.AutoMapper;
+import com.wangzhixuan.model.Resource;
+
+public interface ResourceMapper extends AutoMapper<Resource> {
     /**
      * 添加资源
      *

@@ -1,10 +1,11 @@
 package com.wangzhixuan.mapper;
 
-import com.wangzhixuan.model.RoleResource;
-
 import java.util.List;
 
-public interface RoleResourceMapper {
+import com.baomidou.mybatisplus.mapper.AutoMapper;
+import com.wangzhixuan.model.RoleResource;
+
+public interface RoleResourceMapper extends AutoMapper<RoleResource> {
     /**
      * 添加角色资源关联
      *

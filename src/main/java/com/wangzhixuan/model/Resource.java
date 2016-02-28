@@ -1,19 +1,25 @@
 package com.wangzhixuan.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.io.Serializable;
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @description：资源
  * @author：zhixuan.wang
  * @date：2015/10/1 14:51
  */
+@TableName(value = "resource")
 public class Resource implements Serializable {
 
+	@TableField(exist = false)
     private static final long serialVersionUID = -5321613594382537470L;
 
+	@TableId(auto = true)
     private Long id;
 
     private String name;

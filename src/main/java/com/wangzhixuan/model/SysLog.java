@@ -1,14 +1,20 @@
 package com.wangzhixuan.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.io.Serializable;
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@TableName(value = "syslog")
 public class SysLog implements Serializable {
 
+	@TableField(exist = false)
     private static final long serialVersionUID = -8690056878905494181L;
 
+    @TableId(auto = true)
     private Long id;
 
     private String loginName;

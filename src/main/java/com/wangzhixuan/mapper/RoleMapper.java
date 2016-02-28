@@ -1,13 +1,14 @@
 package com.wangzhixuan.mapper;
 
+import java.util.List;
+import java.util.Map;
+
+import com.baomidou.mybatisplus.mapper.AutoMapper;
 import com.wangzhixuan.common.utils.PageInfo;
 import com.wangzhixuan.model.Resource;
 import com.wangzhixuan.model.Role;
 
-import java.util.List;
-import java.util.Map;
-
-public interface RoleMapper {
+public interface RoleMapper extends AutoMapper<Role> {
     /**
      * 添加角色
      *

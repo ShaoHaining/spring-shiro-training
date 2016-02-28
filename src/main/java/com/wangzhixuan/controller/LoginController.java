@@ -1,6 +1,7 @@
 package com.wangzhixuan.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -12,17 +13,22 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.baomidou.kisso.SSOConfig;
 import com.baomidou.kisso.SSOHelper;
+import com.baomidou.kisso.SSOToken;
 import com.baomidou.kisso.Token;
 import com.baomidou.kisso.annotation.Action;
 import com.baomidou.kisso.annotation.Login;
 import com.wangzhixuan.common.Result;
+import com.wangzhixuan.model.User;
+import com.wangzhixuan.service.UserService;
 
 /**
  * @description：登录退出
@@ -30,9 +36,12 @@ import com.wangzhixuan.common.Result;
  * @Date 2016-02-27
  */
 @Controller
-public class LoginController {
+public class LoginController extends BaseController {
 
 	private static Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
+	
+    @Autowired
+    private UserService userService;
 
 	/**
 	 * 首页
@@ -73,18 +82,17 @@ public class LoginController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@Login(action = Action.Skip)
 	@ResponseBody
-	public Result loginPost(String username, String password, HttpServletRequest request, Model model) {
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public Result loginPost(String username, String password, HttpServletRequest request, HttpServletResponse response,
+			Model model) {
 		LOGGER.info("POST请求登录");
-		Result result = new Result();
 		if (StringUtils.isBlank(username)) {
-			result.setMsg("用户名不能为空");
-			return result;
+			return retResult("用户名不能为空", false);
 		}
 		if (StringUtils.isBlank(password)) {
-			result.setMsg("密码不能为空");
-			return result;
+			return retResult("密码不能为空", false);
 		}
 		Subject user = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(username, DigestUtils.md5Hex(password).toCharArray());
@@ -93,23 +101,35 @@ public class LoginController {
 			user.login(token);
 		} catch (UnknownAccountException e) {
 			LOGGER.error("账号不存在：{}", e);
-			result.setMsg("账号不存在");
-			return result;
+			return retResult("账号不存在", false);
 		} catch (DisabledAccountException e) {
 			LOGGER.error("账号未启用：{}", e);
-			result.setMsg("账号未启用");
-			return result;
+			return retResult("账号未启用", false);
 		} catch (IncorrectCredentialsException e) {
 			LOGGER.error("密码错误：{}", e);
-			result.setMsg("密码错误");
-			return result;
+			return retResult("密码错误", false);
 		} catch (RuntimeException e) {
 			LOGGER.error("未知错误,请联系管理员：{}", e);
-			result.setMsg("未知错误,请联系管理员");
-			return result;
+			return retResult("未知错误,请联系管理员", false);
 		}
-		result.setSuccess(true);
-		return result;
+		
+		/**
+		 * KISSO 登录授权
+		 */
+		User userInfo = userService.findUserByLoginName(token.getUsername());
+		if (userInfo != null) {
+			SSOToken st = new SSOToken(request);
+			st.setUid(String.valueOf(userInfo.getId()));
+			st.setType(String.valueOf(userInfo.getUsertype()));
+			st.setData(userInfo.getLoginname());
+			//记住密码，设置 cookie 时长 1 周 = 604800 秒 【动态设置 maxAge 实现记住密码功能】
+			if ( "on".equals(request.getParameter("rememberMe")) ) {
+				request.setAttribute(SSOConfig.SSO_COOKIE_MAXAGE, 604800); 
+			}
+			SSOHelper.setSSOCookie(request, response, st, false);
+		}
+		
+		return retResult(true);
 	}
 
 	/**
@@ -134,12 +154,15 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/logout")
 	@ResponseBody
-	public Result logout(HttpServletRequest request) {
+	public Result logout(HttpServletRequest request, HttpServletResponse response) {
 		LOGGER.info("登出");
 		Subject subject = SecurityUtils.getSubject();
-		Result result = new Result();
 		subject.logout();
-		result.setSuccess(true);
-		return result;
+		
+		/**
+		 * KISSO 退出登录
+		 */
+		SSOHelper.clearLogin(request, response);
+		return retResult(true);
 	}
 }
