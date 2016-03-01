@@ -19,7 +19,7 @@ public class User implements Serializable {
 	@TableField(exist = false)
     private static final long serialVersionUID = 6700813629656881143L;
 
-	@TableId(auto = true)
+	@TableId
     private Long id;
 
     private String loginname;
@@ -36,6 +36,7 @@ public class User implements Serializable {
 
     private Integer status;
 
+    @TableField(value = "organization_id")
     private Integer organizationId;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

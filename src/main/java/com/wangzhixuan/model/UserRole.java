@@ -17,11 +17,13 @@ public class UserRole implements Serializable {
 	@TableField(exist = false)
     private static final long serialVersionUID = -8332992884983317378L;
 
-	@TableId(auto = true)
+	@TableId
     private Long id;
 
+	@TableField(value = "user_id")
     private Long userId;
 
+	@TableField(value = "role_id")
     private Long roleId;
 
     public Long getId() {

@@ -20,7 +20,7 @@ public class Organization implements Serializable {
 	@TableField(exist = false)
     private static final long serialVersionUID = 1282186495210887307L;
 
-	@TableId(auto = true)
+	@TableId
     private Long id;
 
     private String name;

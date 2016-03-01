@@ -19,7 +19,7 @@ public class Resource implements Serializable {
 	@TableField(exist = false)
     private static final long serialVersionUID = -5321613594382537470L;
 
-	@TableId(auto = true)
+	@TableId
     private Long id;
 
     private String name;

@@ -14,17 +14,22 @@ public class SysLog implements Serializable {
 	@TableField(exist = false)
     private static final long serialVersionUID = -8690056878905494181L;
 
-    @TableId(auto = true)
+	@TableId
     private Long id;
 
+    @TableField(value = "login_name")
     private String loginName;
 
+    @TableField(value = "role_name")
     private String roleName;
 
+    @TableField(value = "opt_content")
     private String optContent;
 
+    @TableField(value = "client_ip")
     private String clientIp;
 
+    @TableField(value = "create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
