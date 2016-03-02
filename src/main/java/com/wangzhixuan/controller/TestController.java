@@ -1,7 +1,5 @@
 package com.wangzhixuan.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,8 +16,6 @@ import com.wangzhixuan.service.SlaveService;
 @Controller
 @RequestMapping("/test")
 public class TestController extends BaseController {
-
-    private static Logger LOGGER = LoggerFactory.getLogger(TestController.class);
 
     @Autowired
     private SlaveService slaveService;

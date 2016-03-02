@@ -1,4 +1,4 @@
-package com.wangzhixuan;
+package com.wangzhixuan.common;
 
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.ConfigGenerator;

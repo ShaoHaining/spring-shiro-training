@@ -158,11 +158,11 @@
                     }
                     return isValid;
                 },
-                success:function(result){
+                success:function(data){
                     progressClose();
-                    result = $.parseJSON(result);
-                    if (result.success) {
-                        window.location.href='/index';
+                    var rlt = $.parseJSON(data);
+                    if (rlt.success) {
+                        window.location.href=rlt.obj;
                     }else{
                          $.messager.show({
                             title:'提示',
@@ -193,6 +193,7 @@
 <div class="top_div"></div>
 <div style="background: rgb(255, 255, 255); margin: -100px auto auto; border: 1px solid rgb(231, 231, 231); border-image: none; width: 400px; height: 200px; text-align: center;">
     <form method="post" id="loginform">
+    	<input type="hidden" name="ReturnURL" value="${ReturnURL}">
         <div style="width: 165px; height: 96px; position: absolute;">
             <div class="tou"></div>
             <div class="initial_left_hand" id="left_hand"></div>

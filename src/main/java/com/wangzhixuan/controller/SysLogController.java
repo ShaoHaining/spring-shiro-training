@@ -1,19 +1,17 @@
 package com.wangzhixuan.controller;
 
-import com.google.common.collect.Maps;
-import com.wangzhixuan.common.utils.PageInfo;
-import com.wangzhixuan.model.SysLog;
-import com.wangzhixuan.service.LogService;
+import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Map;
+import com.google.common.collect.Maps;
+import com.wangzhixuan.common.utils.PageInfo;
+import com.wangzhixuan.model.SysLog;
+import com.wangzhixuan.service.LogService;
 
 /**
  * @description：日志管理
@@ -22,8 +20,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/sysLog")
-public class SysLogController {
-    private static Logger logger = LoggerFactory.getLogger(SysLogController.class);
+public class SysLogController extends BaseController {
 
     @Autowired
     private LogService logService;

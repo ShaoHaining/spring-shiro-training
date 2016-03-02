@@ -1,14 +1,10 @@
 package com.wangzhixuan.controller;
 
-import com.google.common.collect.Maps;
-import com.wangzhixuan.common.Result;
-import com.wangzhixuan.common.utils.PageInfo;
-import com.wangzhixuan.model.Role;
-import com.wangzhixuan.model.vo.Tree;
-import com.wangzhixuan.service.RoleService;
+import java.util.List;
+import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-import java.util.Map;
+import com.google.common.collect.Maps;
+import com.wangzhixuan.common.Result;
+import com.wangzhixuan.common.utils.PageInfo;
+import com.wangzhixuan.model.Role;
+import com.wangzhixuan.model.vo.Tree;
+import com.wangzhixuan.service.RoleService;
 
 /**
  * @description：权限管理
@@ -28,8 +27,6 @@ import java.util.Map;
 @Controller
 @RequestMapping("/role")
 public class RoleController extends BaseController {
-
-    private static Logger logger = LoggerFactory.getLogger(RoleController.class);
 
     @Autowired
     private RoleService roleService;

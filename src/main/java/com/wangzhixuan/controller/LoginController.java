@@ -3,16 +3,8 @@ package com.wangzhixuan.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.DisabledAccountException;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +18,7 @@ import com.baomidou.kisso.SSOToken;
 import com.baomidou.kisso.Token;
 import com.baomidou.kisso.annotation.Action;
 import com.baomidou.kisso.annotation.Login;
+import com.baomidou.kisso.common.util.HttpUtil;
 import com.wangzhixuan.common.Result;
 import com.wangzhixuan.model.User;
 import com.wangzhixuan.service.UserService;
@@ -38,28 +31,27 @@ import com.wangzhixuan.service.UserService;
 @Controller
 public class LoginController extends BaseController {
 
-	private static Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
-	
     @Autowired
     private UserService userService;
 
 	/**
 	 * 首页
-	 *
-	 * @param model
-	 * @return
 	 */
 	@RequestMapping(value = "/index")
 	public String index(Model model) {
 		return "/index";
 	}
+	
+	/**
+	 * 测试登录成功是否会重定向该页面
+	 */
+	@RequestMapping(value = "/demo")
+	public String demo(Model model) {
+		return "/demo";
+	}
 
 	/**
 	 * GET 登录
-	 *
-	 * @param model
-	 * @param request
-	 * @return
 	 */
 	@Login(action = Action.Skip)
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -68,6 +60,7 @@ public class LoginController extends BaseController {
 		if (token != null) {
 			return "redirect:/index";
 		}
+		model.addAttribute("ReturnURL", request.getParameter("ReturnURL"));
 		return "/login";
 	}
 
@@ -87,36 +80,17 @@ public class LoginController extends BaseController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public Result loginPost(String username, String password, HttpServletRequest request, HttpServletResponse response,
 			Model model) {
-		LOGGER.info("POST请求登录");
 		if (StringUtils.isBlank(username)) {
 			return retResult("用户名不能为空", false);
 		}
 		if (StringUtils.isBlank(password)) {
 			return retResult("密码不能为空", false);
 		}
-		Subject user = SecurityUtils.getSubject();
-		UsernamePasswordToken token = new UsernamePasswordToken(username, DigestUtils.md5Hex(password).toCharArray());
-		token.setRememberMe(true);
-		try {
-			user.login(token);
-		} catch (UnknownAccountException e) {
-			LOGGER.error("账号不存在：{}", e);
-			return retResult("账号不存在", false);
-		} catch (DisabledAccountException e) {
-			LOGGER.error("账号未启用：{}", e);
-			return retResult("账号未启用", false);
-		} catch (IncorrectCredentialsException e) {
-			LOGGER.error("密码错误：{}", e);
-			return retResult("密码错误", false);
-		} catch (RuntimeException e) {
-			LOGGER.error("未知错误,请联系管理员：{}", e);
-			return retResult("未知错误,请联系管理员", false);
-		}
 		
 		/**
 		 * KISSO 登录授权
 		 */
-		User userInfo = userService.findUserByLoginName(token.getUsername());
+		User userInfo = userService.findUserByLoginName(username);
 		if (userInfo != null) {
 			SSOToken st = new SSOToken(request);
 			st.setUid(String.valueOf(userInfo.getId()));
@@ -127,9 +101,18 @@ public class LoginController extends BaseController {
 				request.setAttribute(SSOConfig.SSO_COOKIE_MAXAGE, 604800); 
 			}
 			SSOHelper.setSSOCookie(request, response, st, false);
+			
+			//处理 ReturnURL 地址
+			String returnURL = request.getParameter("ReturnURL");
+			if ( StringUtils.isNoneBlank(returnURL) ) {
+				returnURL = HttpUtil.decodeURL(returnURL);
+			} else {
+				returnURL = "/index";
+			}
+			return retResult(returnURL);
 		}
 		
-		return retResult(true);
+		return retResult("用户名密码错误", false);
 	}
 
 	/**
@@ -155,10 +138,6 @@ public class LoginController extends BaseController {
 	@RequestMapping(value = "/logout")
 	@ResponseBody
 	public Result logout(HttpServletRequest request, HttpServletResponse response) {
-		LOGGER.info("登出");
-		Subject subject = SecurityUtils.getSubject();
-		subject.logout();
-		
 		/**
 		 * KISSO 退出登录
 		 */

@@ -8,6 +8,11 @@ import com.baomidou.mybatisplus.mapper.AutoMapper;
 import com.wangzhixuan.model.Resource;
 
 public interface ResourceMapper extends AutoMapper<Resource> {
+	
+	
+	List<Resource> selectByUserId(Long userId);
+	
+	
     /**
      * 添加资源
      *

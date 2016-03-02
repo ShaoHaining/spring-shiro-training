@@ -1,21 +1,19 @@
 package com.wangzhixuan.controller;
 
-import com.wangzhixuan.common.Result;
-import com.wangzhixuan.model.Resource;
-import com.wangzhixuan.model.User;
-import com.wangzhixuan.model.vo.Tree;
-import com.wangzhixuan.service.ResourceService;
+import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
+import com.wangzhixuan.common.Result;
+import com.wangzhixuan.model.Resource;
+import com.wangzhixuan.model.vo.Tree;
+import com.wangzhixuan.service.ResourceService;
 
 /**
  * @description：资源管理
@@ -25,8 +23,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/resource")
 public class ResourceController extends BaseController {
-
-    private static Logger logger = LoggerFactory.getLogger(ResourceController.class);
 
     @Autowired
     private ResourceService resourceService;
@@ -38,10 +34,8 @@ public class ResourceController extends BaseController {
      */
     @RequestMapping(value = "/tree", method = RequestMethod.POST)
     @ResponseBody
-    public List<Tree> tree() {
-        User currentUser = getCurrentUser();
-        List<Tree> tree = resourceService.findTree(currentUser);
-        return tree;
+    public List<Tree> tree(HttpServletRequest request) {
+        return resourceService.findTree(getCurrentUser());
     }
 
     /**

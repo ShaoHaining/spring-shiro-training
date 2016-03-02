@@ -3,12 +3,8 @@ package com.wangzhixuan.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,8 +28,6 @@ import com.wangzhixuan.service.UserService;
 @Controller
 @RequestMapping("/user")
 public class UserController extends BaseController {
-
-	private static Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
 	private UserService userService;
@@ -113,7 +107,7 @@ public class UserController extends BaseController {
 			result.setMsg("添加成功");
 			return result;
 		} catch (RuntimeException e) {
-			LOGGER.error("添加用户失败：{}", e);
+			logger.error("添加用户失败：{}", e);
 			result.setMsg(e.getMessage());
 			return result;
 		}
@@ -161,7 +155,7 @@ public class UserController extends BaseController {
 			result.setMsg("修改成功！");
 			return result;
 		} catch (RuntimeException e) {
-			LOGGER.error("修改用户失败：{}", e);
+			logger.error("修改用户失败：{}", e);
 			result.setMsg(e.getMessage());
 			return result;
 		}
@@ -187,20 +181,20 @@ public class UserController extends BaseController {
 	 */
 	@RequestMapping("/editUserPwd")
 	@ResponseBody
-	public Result editUserPwd(HttpServletRequest request, String oldPwd, String pwd) {
+	public Result editUserPwd(String oldPwd, String pwd) {
 		Result result = new Result();
-		if (!getCurrentUser().getPassword().equals(DigestUtils.md5Hex(oldPwd))) {
-			result.setMsg("老密码不正确!");
-			return result;
-		}
+//		if (!getCurrentUser().getPassword().equals(DigestUtils.md5Hex(oldPwd))) {
+//			result.setMsg("老密码不正确!");
+//			return result;
+//		}
 
 		try {
-			userService.updateUserPwdById(getUserId(), DigestUtils.md5Hex(pwd));
+			userService.updateUserPwdById(getCurrentUserId(), DigestUtils.md5Hex(pwd));
 			result.setSuccess(true);
 			result.setMsg("密码修改成功！");
 			return result;
 		} catch (Exception e) {
-			LOGGER.error("修改密码失败：{}", e);
+			logger.error("修改密码失败：{}", e);
 			result.setMsg(e.getMessage());
 			return result;
 		}
@@ -219,7 +213,7 @@ public class UserController extends BaseController {
 			userService.deleteUserById(id);
 			return retResult("删除成功！", true);
 		} catch (RuntimeException e) {
-			LOGGER.error("删除用户失败：{}", e);
+			logger.error("删除用户失败：{}", e);
 			return retResult(e.getMessage(), false);
 		}
 	}

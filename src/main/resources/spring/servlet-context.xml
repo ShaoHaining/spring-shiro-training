@@ -50,6 +50,10 @@
 			<mvc:mapping path="/**" />
 			<bean class="com.baomidou.kisso.web.interceptor.SSOSpringInterceptor" />
 		</mvc:interceptor>
+		<!-- kisso_shiro 权限拦截器 -->
+		<bean class="com.wangzhixuan.common.shiro.SSOShiroInterceptor">
+			<property name="manager" ref="securityManager" />
+		</bean>
 	</mvc:interceptors>
 
 	<mvc:annotation-driven>

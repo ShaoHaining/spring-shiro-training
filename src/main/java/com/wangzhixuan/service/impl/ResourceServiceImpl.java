@@ -1,5 +1,12 @@
 package com.wangzhixuan.service.impl;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.wangzhixuan.common.utils.Config;
@@ -11,18 +18,8 @@ import com.wangzhixuan.model.User;
 import com.wangzhixuan.model.vo.Tree;
 import com.wangzhixuan.service.ResourceService;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Set;
-
 @Service
 public class ResourceServiceImpl implements ResourceService {
-
-    private static Logger LOGGER = LoggerFactory.getLogger(ResourceServiceImpl.class);
 
     @Autowired
     private UserRoleMapper userRoleMapper;
@@ -235,5 +232,23 @@ public class ResourceServiceImpl implements ResourceService {
             throw new RuntimeException("删除失败");
         }
     }
+
+	@Override
+	public List<Resource> getListByUserId( Long userId ) {
+		return resourceMapper.selectByUserId(userId);
+	}
+
+	@Override
+	public List<String> getUrlListByUserId( Long userId ) {
+		List<String> urlList = Collections.emptyList();
+		List<Resource> resList = getListByUserId(userId);
+		if ( resList == null ) {
+			return urlList;
+		}
+		for ( Resource res : resList ) {
+			urlList.add(res.getUrl());
+		}
+		return urlList;
+	}
 
 }

@@ -13,6 +13,28 @@ import java.util.List;
  */
 public interface ResourceService {
 
+
+    /**
+     * <p>
+     * 获取指定 userId 资源列表
+     * </p>
+     * @param userId
+     * 				用户ID
+     * @return
+     */
+    List<Resource> getListByUserId(Long userId);
+    
+    
+    /**
+     * <p>
+     * 获取指定 userId 权限 URL 列表
+     * </p>
+     * @param userId
+     * 				用户ID
+     * @return
+     */
+    List<String> getUrlListByUserId(Long userId);
+	
     /**
      * 根据用户查询树形菜单列表
      *
