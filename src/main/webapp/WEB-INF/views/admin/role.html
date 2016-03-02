@@ -1,16 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/commons/global.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/commons/basejs.jsp" %>
-<meta http-equiv="X-UA-Compatible" content="edge" />
-<title>角色管理</title>
+    <title>角色管理</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
     <script type="text/javascript">
     var dataGrid;
     $(function() {
         dataGrid = $('#dataGrid').datagrid({
-            url : '${path }' + '/role/dataGrid',
+            url : '/role/dataGrid',
             striped : true,
             rownumbers : true,
             pagination : true,
@@ -86,7 +85,7 @@
             title : '添加',
             width : 500,
             height : 300,
-            href : '${path }/role/addPage',
+            href : '/role/addPage',
             buttons : [ {
                 text : '确定',
                 handler : function() {
@@ -109,7 +108,7 @@
             title : '编辑',
             width : 500,
             height : 300,
-            href : '${path }/role/editPage?id=' + id,
+            href : '/role/editPage?id=' + id,
             buttons : [ {
                 text : '确定',
                 handler : function() {
@@ -156,7 +155,7 @@
             title : '授权',
             width : 500,
             height : 500,
-            href : '${path }/role/grantPage?id=' + id,
+            href : '/role/grantPage?id=' + id,
             buttons : [ {
                 text : '确定',
                 handler : function() {

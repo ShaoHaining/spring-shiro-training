@@ -34,7 +34,7 @@ public class SSOShiroInterceptor implements HandlerInterceptor {
 			if ( token == null ) {
 				return true;
 			}
-			
+
 			Subject subject = new Subject.Builder().buildSubject();
 			logger.debug("是否验证登录:{}", subject.isAuthenticated());
 			Session session = subject.getSession(false);
@@ -45,17 +45,21 @@ public class SSOShiroInterceptor implements HandlerInterceptor {
 				subject.login(new SSOAuthToken(Long.valueOf(token.getUid()), token));
 				logger.debug("登录成功");
 			}
-			
+
 			// 记住登录信息
 			// WebSubject subject = new WebSubject.Builder(manager, request,
 			// response).buildWebSubject();
 			// 每次需要获取用户id
 
 			//TODO 待完善....
-			
+			String url = request.getRequestURI();
+			if ( url == null || subject.isPermitted(url) ) {
+				return true;
+			}
+
 			logger.info("验证....");
-			//response.sendError(403, "Forbidden");
-			return true;
+			response.sendError(403, "Forbidden");
+			return false;
 		}
 		return true;
 	}
@@ -73,7 +77,6 @@ public class SSOShiroInterceptor implements HandlerInterceptor {
 			Exception ex ) throws Exception {
 		//to do noting
 	}
-
 
 
 	public SecurityManager getManager() {

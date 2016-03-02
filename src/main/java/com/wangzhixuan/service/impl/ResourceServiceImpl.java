@@ -1,9 +1,10 @@
 package com.wangzhixuan.service.impl;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -240,13 +241,15 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	public List<String> getUrlListByUserId( Long userId ) {
-		List<String> urlList = Collections.emptyList();
+		List<String> urlList = new ArrayList<String>();
 		List<Resource> resList = getListByUserId(userId);
 		if ( resList == null ) {
 			return urlList;
 		}
 		for ( Resource res : resList ) {
-			urlList.add(res.getUrl());
+			if ( StringUtils.isNoneBlank(res.getUrl()) ) {
+				urlList.add(res.getUrl());
+			}
 		}
 		return urlList;
 	}

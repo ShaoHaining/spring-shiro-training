@@ -18,6 +18,7 @@ import com.baomidou.kisso.SSOToken;
 import com.baomidou.kisso.Token;
 import com.baomidou.kisso.annotation.Action;
 import com.baomidou.kisso.annotation.Login;
+import com.baomidou.kisso.common.encrypt.MD5;
 import com.baomidou.kisso.common.util.HttpUtil;
 import com.wangzhixuan.common.Result;
 import com.wangzhixuan.model.User;
@@ -80,18 +81,19 @@ public class LoginController extends BaseController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public Result loginPost(String username, String password, HttpServletRequest request, HttpServletResponse response,
 			Model model) {
-		if (StringUtils.isBlank(username)) {
+		if ( StringUtils.isBlank(username) ) {
 			return retResult("用户名不能为空", false);
 		}
-		if (StringUtils.isBlank(password)) {
+		if ( StringUtils.isBlank(password) ) {
 			return retResult("密码不能为空", false);
 		}
-		
+
 		/**
 		 * KISSO 登录授权
+		 * 此处为验证登录身份
 		 */
 		User userInfo = userService.findUserByLoginName(username);
-		if (userInfo != null) {
+		if ( userInfo != null && userInfo.getPassword().equals(MD5.toMD5(password)) ) {
 			SSOToken st = new SSOToken(request);
 			st.setUid(String.valueOf(userInfo.getId()));
 			st.setType(String.valueOf(userInfo.getUsertype()));
