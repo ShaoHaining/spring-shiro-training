@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.baomidou.kisso.common.shiro.ShiroPermission;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.wangzhixuan.common.utils.Config;
@@ -20,7 +21,7 @@ import com.wangzhixuan.model.vo.Tree;
 import com.wangzhixuan.service.ResourceService;
 
 @Service
-public class ResourceServiceImpl implements ResourceService {
+public class ResourceServiceImpl implements ResourceService, ShiroPermission {
 
     @Autowired
     private UserRoleMapper userRoleMapper;
@@ -252,6 +253,14 @@ public class ResourceServiceImpl implements ResourceService {
 			}
 		}
 		return urlList;
+	}
+
+	@Override
+	public List<String> getPermissions( String uid ) {
+		if ( uid == null ) {
+			return null;
+		}
+		return getUrlListByUserId(Long.valueOf(uid));
 	}
 
 }

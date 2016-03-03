@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.baomidou.kisso.annotation.Action;
+import com.baomidou.kisso.annotation.Permission;
 import com.wangzhixuan.common.Result;
 import com.wangzhixuan.model.Resource;
 import com.wangzhixuan.model.vo.Tree;
@@ -32,6 +34,7 @@ public class ResourceController extends BaseController {
      *
      * @return
      */
+    @Permission(action = Action.Skip)
     @RequestMapping(value = "/tree", method = RequestMethod.POST)
     @ResponseBody
     public List<Tree> tree(HttpServletRequest request) {

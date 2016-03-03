@@ -11,7 +11,7 @@
 	<properties>
 		<spring.version>4.2.3.RELEASE</spring.version>
 		<aspectjweaver.version>1.5.3</aspectjweaver.version>
-		<shiro.version>1.2.2</shiro.version>
+		<shiro.version>1.2.4</shiro.version>
 		<jackson.version>2.2.2</jackson.version>
 
 		<!-- log -->
@@ -28,9 +28,9 @@
 		<guava.version>19.0</guava.version>
 
 		<!-- kisso -->
-		<kisso.version>3.6</kisso.version>
+		<kisso.version>3.6.1</kisso.version>
 		<bcprov.version>1.50</bcprov.version>
-		<fastjson.version>1.2.7</fastjson.version>
+		<fastjson.version>1.2.8</fastjson.version>
 	</properties>
 
 	<dependencies>
@@ -194,7 +194,7 @@
 		<!-- shiro begin -->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
-			<artifactId>shiro-spring</artifactId>
+			<artifactId>shiro-web</artifactId>
 			<version>${shiro.version}</version>
 		</dependency>
 		<dependency>

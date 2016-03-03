@@ -20,9 +20,12 @@
 	</bean>
 
 	<!-- 认证数据库存储 -->
-	<bean id="SSORealm" class="com.wangzhixuan.common.shiro.SSOAuthRealm">
+	<bean id="SSORealm" class="com.baomidou.kisso.common.shiro.SSOAuthRealm">
 		<!-- ehcache中的缓存名称 -->
 		<property name="authorizationCacheName" value="user_privilege_cache"/>
+		<property name="shiroPermission">
+			<bean class="com.wangzhixuan.service.impl.ResourceServiceImpl"/>
+		</property>
 	</bean>
 
 	<!-- 权限管理器 -->
@@ -37,8 +40,5 @@
 		<property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager" />
 		<property name="arguments" ref="securityManager" />
 	</bean>
-
-	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
-	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
 
 </beans>

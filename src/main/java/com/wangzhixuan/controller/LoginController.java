@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +17,7 @@ import com.baomidou.kisso.SSOToken;
 import com.baomidou.kisso.Token;
 import com.baomidou.kisso.annotation.Action;
 import com.baomidou.kisso.annotation.Login;
+import com.baomidou.kisso.annotation.Permission;
 import com.baomidou.kisso.common.encrypt.MD5;
 import com.baomidou.kisso.common.util.HttpUtil;
 import com.wangzhixuan.common.Result;
@@ -38,6 +38,7 @@ public class LoginController extends BaseController {
 	/**
 	 * 首页
 	 */
+    @Permission(action = Action.Skip)
 	@RequestMapping(value = "/index")
 	public String index(Model model) {
 		return "/index";
@@ -46,6 +47,7 @@ public class LoginController extends BaseController {
 	/**
 	 * 测试登录成功是否会重定向该页面
 	 */
+    @Permission(action = Action.Skip)
 	@RequestMapping(value = "/demo")
 	public String demo(Model model) {
 		return "/demo";
@@ -118,27 +120,14 @@ public class LoginController extends BaseController {
 	}
 
 	/**
-	 * 未授权
-	 *
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "/unauth")
-	public String unauth(Model model) {
-		if (SecurityUtils.getSubject().isAuthenticated() == false) {
-			return "redirect:/login";
-		}
-		return "/unauth";
-	}
-
-	/**
 	 * 退出
 	 *
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/logout")
+	@Login(action = Action.Skip)
 	@ResponseBody
+	@RequestMapping(value = "/logout")
 	public Result logout(HttpServletRequest request, HttpServletResponse response) {
 		/**
 		 * KISSO 退出登录
