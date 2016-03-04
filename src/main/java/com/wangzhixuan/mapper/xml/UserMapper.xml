@@ -5,12 +5,6 @@
 		id, loginName, name, password, sex, age, type, status,
 		orgId, phone, crTime
 	</sql>
-	<select id="selectByPrimaryKey" resultType="User" parameterType="java.lang.Long">
-		select
-		<include refid="Base_Column_List" />
-		from user
-		where id = #{id,jdbcType=BIGINT}
-	</select>
 
 	<select id="findUserByLoginName" resultType="User"
 		parameterType="java.lang.String">
@@ -20,41 +14,34 @@
 		where loginname = #{username}
 	</select>
 
-	<select id="findUserVoById" resultMap="userVoResultMap"
+	<select id="findUserVoById" resultType="UserVo"
 		parameterType="java.lang.Long">
 		SELECT
 		t.id,
-		loginname,
+		loginName,
 		t.`name`,
 		`password`,
 		sex,
 		age,
-		usertype,
+		type,
 		t.`status`,
-		organization_id,
-		t.createdate,
+		orgId,
+		t.crTime,
 		phone,
 		s.`name` AS organizationName,
 		o.id AS roleId,
 		o.`name` AS roleName
 		FROM
 		user t
-		LEFT JOIN user_role r ON t.id = r.user_id
-		LEFT JOIN role o ON r.role_id = o.id
-		LEFT JOIN organization s ON s.id = t.organization_id
+		LEFT JOIN user_role r ON t.id = r.userId
+		LEFT JOIN role o ON r.roleId = o.id
+		LEFT JOIN organization s ON s.id = t.orgId
 		<where>
 			t.id = #{id}
 		</where>
 	</select>
 
-	<select id="findUserById" resultType="User" parameterType="java.lang.Long">
-		select
-		<include refid="Base_Column_List" />
-		from user
-		where id = #{id}
-	</select>
-
-	<select id="findUserPageCondition" resultMap="userVoResultMap"
+	<select id="findUserPageCondition" resultType="UserVo"
 		parameterType="PageInfo">
 		SELECT
 		t.id,
@@ -63,7 +50,7 @@
 		`password`,
 		sex,
 		age,
-		usertype,
+		type,
 		t.`status`,
 		organization_id,
 		t.createdate,
@@ -121,68 +108,10 @@
 		</where>
 	</select>
 
-	<delete id="deleteById" parameterType="java.lang.Long">
-		delete from user
-		where id = #{id,jdbcType=BIGINT}
-	</delete>
-
-	<insert id="insert" parameterType="User">
-		<selectKey resultType="java.lang.Long" keyProperty="id"
-			order="AFTER">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
-		insert into user (loginname, name, password,
-		sex, age, usertype,
-		status, organization_id, createdate,
-		phone)
-		values (#{loginname,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
-		#{password,jdbcType=VARCHAR},
-		#{sex,jdbcType=TINYINT}, #{age,jdbcType=TINYINT}, #{usertype,jdbcType=TINYINT},
-		#{status,jdbcType=TINYINT}, #{organizationId,jdbcType=INTEGER}, now(),
-		#{phone,jdbcType=VARCHAR})
-	</insert>
-
 	<update id="updateUserPwdById">
 		update user
 		set password = #{pwd,jdbcType=VARCHAR},
 		createdate = now()
 		where id = #{userId,jdbcType=BIGINT}
-	</update>
-
-	<update id="updateUser" parameterType="User">
-		update user
-		<set>
-			<if test="loginname != null">
-				loginname = #{loginname,jdbcType=VARCHAR},
-			</if>
-			<if test="name != null">
-				name = #{name,jdbcType=VARCHAR},
-			</if>
-			<if test="password != null">
-				password = #{password,jdbcType=VARCHAR},
-			</if>
-			<if test="sex != null">
-				sex = #{sex,jdbcType=TINYINT},
-			</if>
-			<if test="age != null">
-				age = #{age,jdbcType=TINYINT},
-			</if>
-			<if test="usertype != null">
-				usertype = #{usertype,jdbcType=TINYINT},
-			</if>
-			<if test="status != null">
-				status = #{status,jdbcType=TINYINT},
-			</if>
-			<if test="organizationId != null">
-				organization_id = #{organizationId,jdbcType=INTEGER},
-			</if>
-			<if test="createdate != null">
-				createdate = #{createdate,jdbcType=TIMESTAMP},
-			</if>
-			<if test="phone != null">
-				phone = #{phone,jdbcType=VARCHAR},
-			</if>
-		</set>
-		where id = #{id,jdbcType=BIGINT}
 	</update>
 </mapper>

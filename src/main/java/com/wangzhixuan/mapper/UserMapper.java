@@ -10,29 +10,6 @@ import com.wangzhixuan.model.User;
 import com.wangzhixuan.model.vo.UserVo;
 
 public interface UserMapper extends AutoMapper<User> {
-    /**
-     * 删除用户
-     *
-     * @param id
-     * @return
-     */
-    int deleteById(Long id);
-
-    /**
-     * 添加用户
-     *
-     * @param user
-     * @return
-     */
-    int insert(User user);
-
-    /**
-     * 修改用户
-     *
-     * @param user
-     * @return
-     */
-    int updateUser(User user);
 
     /**
      * 根据用户名查询用户
@@ -41,14 +18,6 @@ public interface UserMapper extends AutoMapper<User> {
      * @return
      */
     User findUserByLoginName(String username);
-
-    /**
-     * 根据用户id查询用户
-     *
-     * @param id
-     * @return
-     */
-    User findUserById(Long id);
 
     /**
      * 用户列表

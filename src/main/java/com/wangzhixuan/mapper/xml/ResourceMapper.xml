@@ -9,10 +9,10 @@
 	<select id="selectByUserId" resultType="Resource" parameterType="java.lang.Long">
 		SELECT
 		<include refid="Base_Column_List" />
-		FROM resource A WHERE EXISTS (SELECT resource_id FROM (SELECT DISTINCT
-		R.resource_id FROM role_resource R WHERE EXISTS (SELECT role_id FROM
-		user_role U WHERE U.role_id=R.role_id AND U.user_id=#{userId})) B
-		WHERE A.id=B.resource_id)
+		FROM resource A WHERE EXISTS (SELECT resourceId FROM (SELECT DISTINCT
+		R.resourceId FROM role_resource R WHERE EXISTS (SELECT roleId FROM
+		user_role U WHERE U.roleId=R.roleId AND U.userId=#{userId})) B
+		WHERE A.id=B.resourceId)
 	</select>
 
     <!-- 查询所有父菜单 -->

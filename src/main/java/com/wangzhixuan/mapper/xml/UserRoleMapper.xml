@@ -5,7 +5,7 @@
 		id, userId, roleId
 	</sql>
 
-	<select id="findUserRoleByUserId" resultMap="BaseResultMap"
+	<select id="findUserRoleByUserId" resultType="UserRole"
 		parameterType="java.lang.Long">
 		SELECT
 		<include refid="Base_Column_List" />

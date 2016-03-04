@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findUserById(Long id) {
-        return userMapper.findUserById(id);
+        return userMapper.selectById(id);
     }
 
     @Override
@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
             LOGGER.error("类转换异常：{}", e);
             throw new RuntimeException("类型转换异常：{}", e);
         }
-        userMapper.updateUser(user);
+        userMapper.updateById(user);
         Long id = userVo.getId();
         List<UserRole> userRoles = userRoleMapper.findUserRoleByUserId(id);
         if (userRoles != null && (!userRoles.isEmpty())) {
