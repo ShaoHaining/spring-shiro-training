@@ -38,7 +38,8 @@ public class UserController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/manager", method = RequestMethod.GET)
-	public String manager() {
+	public String manager(Model model) {
+		model.addAttribute("userId", getCurrentUserId());
 		return "/admin/user";
 	}
 

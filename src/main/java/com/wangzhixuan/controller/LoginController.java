@@ -41,6 +41,7 @@ public class LoginController extends BaseController {
     @Permission(action = Action.Skip)
 	@RequestMapping(value = "/index")
 	public String index(Model model) {
+    	model.addAttribute("userName", getSSOToken().getData());
 		return "/index";
 	}
 	

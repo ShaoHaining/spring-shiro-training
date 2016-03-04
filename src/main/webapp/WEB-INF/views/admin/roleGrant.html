@@ -1,10 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/commons/global.jsp" %>
 <script type="text/javascript">
     var resourceTree;
     $(function() {
         resourceTree = $('#resourceTree').tree({
-            url : '${path }/resource/allTrees',
+            url : '/resource/allTrees',
             parentField : 'pid',
             lines : true,
             checkbox : true,
@@ -12,7 +10,7 @@
             },
             onLoadSuccess : function(node, data) {
                 progressLoad();
-                $.post( '${path }/role/findResourceIdListByRoleId', {
+                $.post( '/role/findResourceIdListByRoleId', {
                     id : '${id}'
                 }, function(result) {
                     var ids;
@@ -33,7 +31,7 @@
         });
 
         $('#roleGrantForm').form({
-            url : '${path }/role/grant',
+            url : '/role/grant',
             onSubmit : function() {
                 progressLoad();
                 var isValid = $(this).form('validate');

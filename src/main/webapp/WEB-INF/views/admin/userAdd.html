@@ -1,24 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/commons/global.jsp" %>
 <script type="text/javascript">
     $(function() {
 
         $('#organizationId').combotree({
-            url : '${path }/organization/tree',
+            url : '/organization/tree',
             parentField : 'pid',
             lines : true,
             panelHeight : 'auto'
         });
 
         $('#roleIds').combotree({
-            url: '${path }/role/tree',
+            url: '/role/tree',
             multiple: true,
             required: true,
             panelHeight : 'auto'
         });
 
         $('#userAddForm').form({
-            url : '${path }/user/add',
+            url : '/user/add',
             onSubmit : function() {
                 progressLoad();
                 var isValid = $(this).form('validate');

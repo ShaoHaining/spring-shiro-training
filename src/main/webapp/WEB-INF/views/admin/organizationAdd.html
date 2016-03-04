@@ -1,18 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/commons/global.jsp" %>
 <script type="text/javascript">
 
     $(function() {
         
         $('#pid').combotree({
-            url : '${path }/organization/tree',
+            url : '/organization/tree',
             parentField : 'pid',
             lines : true,
             panelHeight : 'auto'
         });
         
         $('#organizationAddForm').form({
-            url : '${path }/organization/add',
+            url : '/organization/add',
             onSubmit : function() {
                 progressLoad();
                 var isValid = $(this).form('validate');

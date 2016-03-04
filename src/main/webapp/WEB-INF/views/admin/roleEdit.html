@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/commons/global.jsp" %>
 <script type="text/javascript">
     $(function() {
-        $('#roleAddForm').form({
-            url : '${path }/role/add',
+        $('#roleEditForm').form({
+            url : '/role/edit',
             onSubmit : function() {
                 progressLoad();
                 var isValid = $(this).form('validate');
@@ -23,32 +21,37 @@
                 }
             }
         });
+        
+        
+        $("#description").val('${role.description}');
+        
     });
 </script>
-<div class="easyui-layout" data-options="fit:true,border:false" >
-    <div data-options="region:'center',border:false" title="" style="overflow: hidden;padding: 3px;" >
-        <form id="roleAddForm" method="post">
+<div class="easyui-layout" data-options="fit:true,border:false">
+    <div data-options="region:'center',border:false" title="" style="overflow: hidden;padding: 3px;">
+        <form id="roleEditForm" method="post">
             <table class="grid">
                 <tr>
                     <td>角色名称</td>
-                    <td><input name="name" type="text" placeholder="请输入角色名称" class="easyui-validatebox span2" data-options="required:true" value=""></td>
+                    <td><input name="id" type="hidden"  value="${role.id}">
+                    <input name="name" type="text" placeholder="请输入角色名称" class="easyui-validatebox" data-options="required:true" value="${role.name}"></td>
                 </tr>
                 <tr>
                     <td>排序</td>
-                    <td><input name="seq" value="0" class="easyui-numberspinner" style="width: 140px; height: 29px;" required="required" data-options="editable:false"></td>
+                    <td><input name="seq"  class="easyui-numberspinner" style="width: 140px; height: 29px;" required="required" data-options="editable:false" value="${role.seq}"></td>
                 </tr>
                 <tr>
                     <td>状态</td>
-                    <td >
-                        <select id="status" name="status" class="easyui-combobox" data-options="width:140,height:29,editable:false,panelHeight:'auto'">
-                                    <option value="0">正常</option>
-                                    <option value="1">停用</option>
-                        </select>
-                    </td>
+	                <td >
+		                <select id="status" name="status" class="easyui-combobox" data-options="width:140,height:29,editable:false,panelHeight:'auto'">
+		                            <option value="0">正常</option>
+		                            <option value="1">停用</option>
+		                </select>
+	                </td>
                 </tr>
                 <tr>
                     <td>备注</td>
-                    <td colspan="3"><textarea name="description" rows="" cols="" ></textarea></td>
+                    <td colspan="3"><textarea id="description" name="description" rows="" cols="" ></textarea></td>
                 </tr>
             </table>
         </form>

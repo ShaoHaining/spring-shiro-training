@@ -1,10 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/commons/global.jsp" %>
 <script type="text/javascript">
     $(function() {
         var roleIds = ${roleIds };
         $('#organizationId').combotree({
-            url : '${path }/organization/tree',
+            url : '/organization/tree',
             parentField : 'pid',
             lines : true,
             panelHeight : 'auto',
@@ -12,7 +10,7 @@
         });
 
         $('#roleIds').combotree({
-            url : '${path }/role/tree',
+            url : '/role/tree',
             parentField : 'pid',
             lines : true,
             panelHeight : 'auto',
@@ -23,7 +21,7 @@
         });
 
         $('#userEditForm').form({
-            url : '${path }/user/edit',
+            url : '/user/edit',
             onSubmit : function() {
                 progressLoad();
                 var isValid = $(this).form('validate');
