@@ -97,8 +97,8 @@ public class LoginController extends BaseController {
 		User userInfo = userService.findUserByLoginName(username);
 		if ( userInfo != null && userInfo.getPassword().equals(MD5.toMD5(password)) ) {
 			SSOToken st = new SSOToken(request);
-			st.setUid(String.valueOf(userInfo.getId()));
-			st.setType(String.valueOf(userInfo.getUsertype()));
+			st.setId(userInfo.getId());
+			st.setType(userInfo.getUsertype());
 			st.setData(userInfo.getLoginname());
 			//记住密码，设置 cookie 时长 1 周 = 604800 秒 【动态设置 maxAge 实现记住密码功能】
 			if ( "on".equals(request.getParameter("rememberMe")) ) {

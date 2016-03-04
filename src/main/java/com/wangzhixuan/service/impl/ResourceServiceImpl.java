@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.baomidou.kisso.Token;
 import com.baomidou.kisso.common.shiro.ShiroPermission;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -256,11 +257,11 @@ public class ResourceServiceImpl implements ResourceService, ShiroPermission {
 	}
 
 	@Override
-	public List<String> getPermissions( String uid ) {
-		if ( uid == null ) {
+	public List<String> getPermissions( Token token ) {
+		if ( token == null ) {
 			return null;
 		}
-		return getUrlListByUserId(Long.valueOf(uid));
+		return getUrlListByUserId(token.getId());
 	}
 
 }

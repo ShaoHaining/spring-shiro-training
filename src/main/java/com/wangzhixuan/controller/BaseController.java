@@ -85,7 +85,7 @@ public class BaseController {
 
 
 	public Long getCurrentUserId() {
-		return Long.valueOf(getSSOToken().getUid());
+		return getSSOToken().getId();
 	}
 
 
