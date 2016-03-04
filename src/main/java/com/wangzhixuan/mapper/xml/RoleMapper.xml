@@ -1,88 +1,86 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wangzhixuan.mapper.RoleMapper">
-    <resultMap id="BaseResultMap" type="Role">
-        <id column="id" property="id" jdbcType="BIGINT"/>
-        <result column="name" property="name" jdbcType="VARCHAR"/>
-        <result column="seq" property="seq" jdbcType="TINYINT"/>
-        <result column="description" property="description" jdbcType="VARCHAR"/>
-        <result column="status" property="status" jdbcType="TINYINT"/>
-    </resultMap>
-    <sql id="Base_Column_List">
-    id, name, seq, description, status
-  </sql>
+	<sql id="Base_Column_List">
+		id, name, seq, status, description
+	</sql>
 
-    <select id="findRolePageCondition" resultMap="BaseResultMap" parameterType="PageInfo">
-        select
-        <include refid="Base_Column_List"/>
-        from role
-        order by ${sort} ${order}
-        limit #{from}, #{size}
-    </select>
+	<select id="findRolePageCondition" resultType="Role"
+		parameterType="PageInfo">
+		select
+		<include refid="Base_Column_List" />
+		from role
+		order by ${sort} ${order}
+		limit #{from}, #{size}
+	</select>
 
-    <select id="findRolePageCount" resultType="java.lang.Integer" parameterType="PageInfo">
-    select 
-    count(*) count
-    from role
-  </select>
+	<select id="findRolePageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
+		select
+		count(*) count
+		from role
+	</select>
 
-    <select id="findRoleAll" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from role order by seq
-    </select>
+	<select id="findRoleAll" resultType="Role">
+		select
+		<include refid="Base_Column_List" />
+		from role order by seq
+	</select>
 
-    <select id="findResourceIdListByRoleId" resultType="java.lang.Long" parameterType="java.lang.Long">
-    SELECT
-        e.resource_id AS id
-    FROM
-        role r
-    LEFT JOIN role_resource e ON r.id = e.role_id
-    WHERE
-        r.id = #{id}
-  </select>
+	<select id="findResourceIdListByRoleId" resultType="java.lang.Long"
+		parameterType="java.lang.Long">
+		SELECT
+		e.resource_id AS id
+		FROM
+		role r
+		LEFT JOIN role_resource e ON r.id = e.role_id
+		WHERE
+		r.id = #{id}
+	</select>
 
-    <select id="findResourceIdListByRoleIdAndType" resultType="Resource"
-            parameterType="java.lang.Long">
-    SELECT
-        s.id AS id,
-        s. NAME AS 'name',
-        s.url AS url,
-        s.description AS description,
-        s.icon AS icon,
-        s.pid AS pid,
-        s.seq AS seq,
-        s. STATUS AS 'status',
-        s.resourcetype AS resourcetype,
-        s.createdate AS createdate
-    FROM
-        role r
-    LEFT JOIN role_resource e ON r.id = e.role_id
-    LEFT JOIN resource s ON e.resource_id = s.id
-    WHERE
-        r.id = #{id}
-    AND s.resourcetype = 0
-  </select>
+	<select id="findResourceIdListByRoleIdAndType" resultType="Resource"
+		parameterType="java.lang.Long">
+		SELECT
+		s.id AS id,
+		s. NAME AS 'name',
+		s.url AS url,
+		s.description AS description,
+		s.icon AS icon,
+		s.pid AS pid,
+		s.seq AS seq,
+		s. STATUS AS 'status',
+		s.resourcetype AS resourcetype,
+		s.createdate AS createdate
+		FROM
+		role r
+		LEFT JOIN role_resource e ON r.id = e.role_id
+		LEFT JOIN resource s ON e.resource_id = s.id
+		WHERE
+		r.id = #{id}
+		AND s.resourcetype = 0
+	</select>
 
-    <select id="findRoleResourceIdListByRoleId" resultType="java.lang.Long" parameterType="java.lang.Long">
-    SELECT
-        e.id AS id
-    FROM
-        role r
-    LEFT JOIN role_resource e ON r.id = e.role_id
-    WHERE
-        r.id = #{id}
-  </select>
+	<select id="findRoleResourceIdListByRoleId" resultType="java.lang.Long"
+		parameterType="java.lang.Long">
+		SELECT
+		e.id AS id
+		FROM
+		role r
+		LEFT JOIN role_resource e ON r.id = e.role_id
+		WHERE
+		r.id = #{id}
+	</select>
 
-    <select id="findRoleResourceListByRoleId" resultType="java.util.HashMap" parameterType="java.lang.Long">
-    SELECT
-        e.id AS id,
-        s.url AS url
-    FROM
-        role r
-    LEFT JOIN role_resource e ON r.id = e.role_id
-    LEFT JOIN resource s ON e.resource_id = s.id
-    WHERE
-        r.id = #{id}
-  </select>
+	<select id="findRoleResourceListByRoleId" resultType="java.util.HashMap"
+		parameterType="java.lang.Long">
+		SELECT
+		e.id AS id,
+		s.url AS url
+		FROM
+		role r
+		LEFT JOIN role_resource e ON r.id = e.role_id
+		LEFT JOIN resource s ON e.resource_id = s.id
+		WHERE
+		r.id = #{id}
+	</select>
 </mapper>

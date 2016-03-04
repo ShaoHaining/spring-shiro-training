@@ -1,22 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wangzhixuan.mapper.ResourceMapper">
-	<resultMap id="BaseResultMap" type="Resource">
-		<id column="id" property="id" jdbcType="BIGINT" />
-		<result column="name" property="name" jdbcType="VARCHAR" />
-		<result column="url" property="url" jdbcType="VARCHAR" />
-		<result column="description" property="description" jdbcType="VARCHAR" />
-		<result column="icon" property="icon" jdbcType="VARCHAR" />
-		<result column="pid" property="pid" jdbcType="BIGINT" />
-		<result column="seq" property="seq" jdbcType="TINYINT" />
-		<result column="status" property="status" jdbcType="TINYINT" />
-		<result column="resourcetype" property="resourcetype" jdbcType="TINYINT" />
-		<result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
-	</resultMap>
-
 	<sql id="Base_Column_List">
-		id, name, url, description, icon, pid, seq, status, resourcetype,
-		createdate
+		id, name, url, description, icon, pid, seq, status,
+		resourcetype, crTime
 	</sql>
 
 	<select id="selectByUserId" resultType="Resource" parameterType="java.lang.Long">
@@ -24,28 +11,31 @@
 		<include refid="Base_Column_List" />
 		FROM resource A WHERE EXISTS (SELECT resource_id FROM (SELECT DISTINCT
 		R.resource_id FROM role_resource R WHERE EXISTS (SELECT role_id FROM
-		user_role U WHERE U.role_id=R.role_id AND U.user_id=#{userId})) B WHERE A.id=B.resource_id)
+		user_role U WHERE U.role_id=R.role_id AND U.user_id=#{userId})) B
+		WHERE A.id=B.resource_id)
 	</select>
 
     <!-- 查询所有父菜单 -->
-	<select id="findResourceAllByTypeAndPidNull" resultMap="BaseResultMap"
+	<select id="findResourceAllByTypeAndPidNull" resultType="Resource"
 		parameterType="java.lang.Integer">
 		select distinct
 		<include refid="Base_Column_List" />
 		from resource
 		where resourcetype = #{resourceType}
-		and pid is null order by seq
+		and pid is null order
+		by seq
 	</select>
 
-	<select id="findResourceAllByTypeAndPid" resultMap="BaseResultMap">
+	<select id="findResourceAllByTypeAndPid" resultType="Resource">
 		select distinct
 		<include refid="Base_Column_List" />
 		from resource
 		where resourcetype = #{resourceType}
-		and pid = #{pid} order by seq
+		and pid = #{pid}
+		order by seq
 	</select>
 
-	<select id="findResourceAll" resultMap="BaseResultMap">
+	<select id="findResourceAll" resultType="Resource">
 		select
 		<include refid="Base_Column_List" />
 		from resource order by seq

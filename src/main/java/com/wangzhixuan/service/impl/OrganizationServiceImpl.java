@@ -59,7 +59,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public void addOrganization(Organization organization) {
-    	organization.setCreatedate(new Date());
+    	organization.setCrTime(new Date());
         organizationMapper.insert(organization);
     }
 

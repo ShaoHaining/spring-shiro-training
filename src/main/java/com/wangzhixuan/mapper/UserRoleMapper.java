@@ -7,13 +7,8 @@ import com.wangzhixuan.model.UserRole;
 
 public interface UserRoleMapper extends AutoMapper<UserRole> {
 
-    int insert(UserRole userRole);
+	List<UserRole> findUserRoleByUserId( Long userId );
 
-    int updateByPrimaryKeySelective(UserRole userRole);
 
-    List<UserRole> findUserRoleByUserId(Long userId);
-
-    int deleteById(Long id);
-
-    List<Long> findRoleIdListByUserId(Long userId);
+	List<Long> findRoleIdListByUserId( Long userId );
 }

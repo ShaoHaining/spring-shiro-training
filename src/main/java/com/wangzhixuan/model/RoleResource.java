@@ -7,55 +7,48 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 
 /**
- * @description：角色资源关联
- * @author：zhixuan.wang
- * @date：2015/10/1 14:51
+ *
+ * 角色资源表
+ *
  */
 @TableName(value = "role_resource")
 public class RoleResource implements Serializable {
 
 	@TableField(exist = false)
-    private static final long serialVersionUID = -7250242744961556986L;
+	private static final long serialVersionUID = 1L;
 
+	/** 主键ID */
 	@TableId
-    private Long id;
+	private Long id;
 
-    @TableField(value = "role_id")
-    private Long roleId;
+	/** 角色ID */
+	private Long roleId;
 
-    @TableField(value = "resource_id")
-    private Long resourceId;
+	/** 资源ID */
+	private Long resourceId;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return this.id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public Long getRoleId() {
-        return roleId;
-    }
+	public Long getRoleId() {
+		return this.roleId;
+	}
 
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
-    }
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
 
-    public Long getResourceId() {
-        return resourceId;
-    }
+	public Long getResourceId() {
+		return this.resourceId;
+	}
 
-    public void setResourceId(Long resourceId) {
-        this.resourceId = resourceId;
-    }
+	public void setResourceId(Long resourceId) {
+		this.resourceId = resourceId;
+	}
 
-    @Override
-    public String toString() {
-        return "RoleResource{" +
-                "id=" + id +
-                ", roleId=" + roleId +
-                ", resourceId=" + resourceId +
-                '}';
-    }
 }

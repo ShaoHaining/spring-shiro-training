@@ -1,7 +1,9 @@
 package com.wangzhixuan.common.aop;
 
-import com.wangzhixuan.model.SysLog;
-import com.wangzhixuan.service.LogService;
+import java.util.Enumeration;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.PrincipalCollection;
@@ -17,8 +19,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.Enumeration;
+import com.wangzhixuan.model.SysLog;
+import com.wangzhixuan.service.LogService;
 
 /**
  * @description：AOP 日志
@@ -73,9 +75,9 @@ public class SysLogAop {
                     SysLog sysLog = new SysLog();
                     sysLog.setLoginName(loginName);
                     sysLog.setRoleName(loginName);
-                    sysLog.setOptContent(strMessage);
+                    sysLog.setContent(strMessage);
                     if (request != null) {
-                        sysLog.setClientIp(request.getRemoteAddr());
+                        sysLog.setIp(request.getRemoteAddr());
                     }
                     LOGGER.info(sysLog.toString());
                     logService.insertLog(sysLog);

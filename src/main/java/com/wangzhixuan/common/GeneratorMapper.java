@@ -1,5 +1,6 @@
 package com.wangzhixuan.common;
 
+import com.baomidou.mybatisplus.annotations.IdType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.ConfigGenerator;
 
@@ -32,6 +33,7 @@ public class GeneratorMapper {
 		cg.setDbPassword("");
 		cg.setDbUrl("jdbc:mysql://127.0.0.1:3306/shiro?characterEncoding=utf8");
 		cg.setDbPrefix(false);
+		cg.setIdType(IdType.AUTO);
 		AutoGenerator.run(cg);
 	}
 	

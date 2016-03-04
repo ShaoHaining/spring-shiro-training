@@ -6,134 +6,129 @@ import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
- * @description：资源
- * @author：zhixuan.wang
- * @date：2015/10/1 14:51
+ *
+ * 资源表
+ *
  */
 @TableName(value = "resource")
 public class Resource implements Serializable {
 
 	@TableField(exist = false)
-    private static final long serialVersionUID = -5321613594382537470L;
+	private static final long serialVersionUID = 1L;
 
+	/** 主键ID */
 	@TableId
-    private Long id;
+	private Long id;
 
-    private String name;
+	/** 名称 */
+	private String name;
 
-    private String url;
+	/** 地址 */
+	private String url;
 
-    private String description;
+	/** 描述 */
+	private String description;
 
-    @JsonProperty("iconCls")
-    private String icon;
+	/** 图标 */
+	private String icon;
 
-    private Long pid;
+	/** 父ID */
+	private Long pid;
 
-    private Integer seq;
+	/** 排序 */
+	private Integer seq;
 
-    private Integer status;
+	/** 状态 */
+	private Integer status;
 
-    private Integer resourcetype;
+	/** 类型 */
+	private Integer resourcetype;
 
-    private Date createdate;
+	/** 创建时间 */
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date crTime;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return this.id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return this.name;
+	}
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getUrl() {
-        return url;
-    }
+	public String getUrl() {
+		return this.url;
+	}
 
-    public void setUrl(String url) {
-        this.url = url == null ? null : url.trim();
-    }
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public String getDescription() {
+		return this.description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public String getIcon() {
-        return icon;
-    }
+	public String getIcon() {
+		return this.icon;
+	}
 
-    public void setIcon(String icon) {
-        this.icon = icon == null ? null : icon.trim();
-    }
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
 
-    public Long getPid() {
-        return pid;
-    }
+	public Long getPid() {
+		return this.pid;
+	}
 
-    public void setPid(Long pid) {
-        this.pid = pid;
-    }
+	public void setPid(Long pid) {
+		this.pid = pid;
+	}
 
-    public Integer getSeq() {
-        return seq;
-    }
+	public Integer getSeq() {
+		return this.seq;
+	}
 
-    public void setSeq(Integer seq) {
-        this.seq = seq;
-    }
+	public void setSeq(Integer seq) {
+		this.seq = seq;
+	}
 
-    public Integer getStatus() {
-        return status;
-    }
+	public Integer getStatus() {
+		return this.status;
+	}
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
-    public Integer getResourcetype() {
-        return resourcetype;
-    }
+	public Integer getResourcetype() {
+		return this.resourcetype;
+	}
 
-    public void setResourcetype(Integer resourcetype) {
-        this.resourcetype = resourcetype;
-    }
+	public void setResourcetype(Integer resourcetype) {
+		this.resourcetype = resourcetype;
+	}
 
-    public Date getCreatedate() {
-        return createdate;
-    }
+	public Date getCrTime() {
+		return this.crTime;
+	}
 
-    public void setCreatedate(Date createdate) {
-        this.createdate = createdate;
-    }
+	public void setCrTime(Date crTime) {
+		this.crTime = crTime;
+	}
 
-    @Override
-    public String toString() {
-        return "Resource{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", url='" + url + '\'' +
-                ", description='" + description + '\'' +
-                ", icon='" + icon + '\'' +
-                ", pid=" + pid +
-                ", seq=" + seq +
-                ", status=" + status +
-                ", resourcetype=" + resourcetype +
-                ", createdate=" + createdate +
-                '}';
-    }
 }

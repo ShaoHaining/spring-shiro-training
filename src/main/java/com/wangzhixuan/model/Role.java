@@ -7,75 +7,70 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 
 /**
- * @description：角色
- * @author：zhixuan.wang
- * @date：2015/10/1 14:51
+ *
+ * 角色表
+ *
  */
 @TableName(value = "role")
 public class Role implements Serializable {
 
 	@TableField(exist = false)
-    private static final long serialVersionUID = -1756241579303707517L;
+	private static final long serialVersionUID = 1L;
 
+	/** 主键ID */
 	@TableId
-    private Long id;
+	private Long id;
 
-    private String name;
+	/** 角色名称 */
+	private String name;
 
-    private Integer seq;
+	/** 排序 */
+	private Integer seq;
 
-    private String description;
+	/** 状态 */
+	private Integer status;
 
-    private Integer status;
+	/** 描述 */
+	private String description;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return this.id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return this.name;
+	}
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public Integer getSeq() {
-        return seq;
-    }
+	public Integer getSeq() {
+		return this.seq;
+	}
 
-    public void setSeq(Integer seq) {
-        this.seq = seq;
-    }
+	public void setSeq(Integer seq) {
+		this.seq = seq;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public Integer getStatus() {
+		return this.status;
+	}
 
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
-    }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
-    public Integer getStatus() {
-        return status;
-    }
+	public String getDescription() {
+		return this.description;
+	}
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    @Override
-    public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", seq=" + seq +
-                ", description='" + description + '\'' +
-                ", status=" + status +
-                '}';
-    }
 }

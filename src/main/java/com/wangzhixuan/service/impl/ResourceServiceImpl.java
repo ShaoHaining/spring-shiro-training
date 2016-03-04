@@ -35,7 +35,7 @@ public class ResourceServiceImpl implements ResourceService, ShiroPermission {
     public List<Tree> findTree(User user) {
         List<Tree> trees = Lists.newArrayList();
         // 超级管理
-        if (user.getLoginname().equals("admin")) {
+        if (user.getLoginName().equals("admin")) {
             List<Resource> resourceFather = resourceMapper.findResourceAllByTypeAndPidNull(Config.RESOURCE_MENU);
             if (resourceFather == null) {
                 return null;
