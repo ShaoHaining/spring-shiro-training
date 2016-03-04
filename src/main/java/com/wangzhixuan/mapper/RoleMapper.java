@@ -9,13 +9,6 @@ import com.wangzhixuan.model.Resource;
 import com.wangzhixuan.model.Role;
 
 public interface RoleMapper extends AutoMapper<Role> {
-    /**
-     * 添加角色
-     *
-     * @param role
-     * @return
-     */
-    int insert(Role role);
 
     /**
      * 查询角色列表
@@ -39,30 +32,6 @@ public interface RoleMapper extends AutoMapper<Role> {
      * @return
      */
     List<Role> findRoleAll();
-
-    /**
-     * 根据id查询角色
-     *
-     * @param id
-     * @return
-     */
-    Role findRoleById(Long id);
-
-    /**
-     * 更新角色
-     *
-     * @param role
-     * @return
-     */
-    int updateRole(Role role);
-
-    /**
-     * 删除角色
-     *
-     * @param id
-     * @return
-     */
-    int deleteRoleById(Long id);
 
     /**
      * 根据角色查询资源id列表

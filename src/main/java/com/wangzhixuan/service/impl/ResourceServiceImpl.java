@@ -217,7 +217,7 @@ public class ResourceServiceImpl implements ResourceService, ShiroPermission {
 
     @Override
     public void updateResource(Resource resource) {
-        int update = resourceMapper.updateResource(resource);
+        int update = resourceMapper.updateById(resource);
         if (update != 1) {
             throw new RuntimeException("更新失败");
         }
@@ -225,12 +225,12 @@ public class ResourceServiceImpl implements ResourceService, ShiroPermission {
 
     @Override
     public Resource findResourceById(Long id) {
-        return resourceMapper.findResourceById(id);
+        return resourceMapper.selectById(id);
     }
 
     @Override
     public void deleteResourceById(Long id) {
-        int delete = resourceMapper.deleteResourceById(id);
+        int delete = resourceMapper.deleteById(id);
         if (delete != 1) {
             throw new RuntimeException("删除失败");
         }

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.baomidou.kisso.annotation.Action;
+import com.baomidou.kisso.annotation.Permission;
 import com.wangzhixuan.common.Result;
 import com.wangzhixuan.model.Organization;
 import com.wangzhixuan.model.vo.Tree;
@@ -66,6 +68,7 @@ public class OrganizationController extends BaseController {
      *
      * @return
      */
+    @Permission(action = Action.Skip)
     @RequestMapping("/addPage")
     public String addPage() {
         return "/admin/organizationAdd";
@@ -77,8 +80,9 @@ public class OrganizationController extends BaseController {
      * @param organization
      * @return
      */
-    @RequestMapping("/add")
+    @Permission(action = Action.Skip)
     @ResponseBody
+    @RequestMapping("/add")
     public Result add(Organization organization) {
         Result result = new Result();
         try {
@@ -100,6 +104,7 @@ public class OrganizationController extends BaseController {
      * @param id
      * @return
      */
+    @Permission(action = Action.Skip)
     @RequestMapping("/editPage")
     public String editPage(HttpServletRequest request, Long id) {
         Organization organization = organizationService.findOrganizationById(id);
@@ -113,8 +118,9 @@ public class OrganizationController extends BaseController {
      * @param organization
      * @return
      */
-    @RequestMapping("/edit")
+    @Permission(action = Action.Skip)
     @ResponseBody
+    @RequestMapping("/edit")
     public Result edit(Organization organization) {
         Result result = new Result();
         try {
@@ -135,8 +141,9 @@ public class OrganizationController extends BaseController {
      * @param id
      * @return
      */
-    @RequestMapping("/delete")
+    @Permission(action = Action.Skip)
     @ResponseBody
+    @RequestMapping("/delete")
     public Result delete(Long id) {
         Result result = new Result();
         try {

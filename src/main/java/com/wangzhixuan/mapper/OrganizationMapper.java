@@ -6,29 +6,6 @@ import com.baomidou.mybatisplus.mapper.AutoMapper;
 import com.wangzhixuan.model.Organization;
 
 public interface OrganizationMapper extends AutoMapper<Organization> {
-    /**
-     * 删除部门
-     *
-     * @param id
-     * @return
-     */
-    int deleteOrganizationById(Long id);
-
-    /**
-     * 添加部门
-     *
-     * @param organization
-     * @return
-     */
-    int insert(Organization organization);
-
-    /**
-     * 更新部门
-     *
-     * @param organization
-     * @return
-     */
-    int updateOrganization(Organization organization);
 
     /**
      * 查询一级部门
@@ -51,12 +28,4 @@ public interface OrganizationMapper extends AutoMapper<Organization> {
      * @return
      */
     List<Organization> findOrganizationAll();
-
-    /**
-     * 根据id查询部门
-     *
-     * @param id
-     * @return
-     */
-    Organization findOrganizationById(Long id);
 }

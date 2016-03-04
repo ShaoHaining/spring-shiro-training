@@ -62,7 +62,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void deleteRoleById(Long id) {
-        int update = roleMapper.deleteRoleById(id);
+        int update = roleMapper.deleteById(id);
         if (update != 1) {
             LOGGER.warn("删除失败，id：{}", id);
             throw new ServiceException("删除失败");
@@ -71,12 +71,12 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role findRoleById(Long id) {
-        return roleMapper.findRoleById(id);
+        return roleMapper.selectById(id);
     }
 
     @Override
     public void updateRole(Role role) {
-        int update = roleMapper.updateRole(role);
+        int update = roleMapper.updateById(role);
         if (update != 1) {
             LOGGER.warn("更新失败，参数：{}", role.toString());
             throw new ServiceException("更新失败");

@@ -68,6 +68,7 @@ public class ResourceController extends BaseController {
      *
      * @return
      */
+    @Permission(action = Action.Skip)
     @RequestMapping("/addPage")
     public String addPage() {
         return "/admin/resourceAdd";
@@ -79,8 +80,9 @@ public class ResourceController extends BaseController {
      * @param resource
      * @return
      */
-    @RequestMapping("/add")
+    @Permission(action = Action.Skip)
     @ResponseBody
+    @RequestMapping("/add")
     public Result add(Resource resource) {
         Result result = new Result();
         try {
@@ -100,8 +102,9 @@ public class ResourceController extends BaseController {
      *
      * @return
      */
-    @RequestMapping("/allTree")
+    @Permission(action = Action.Skip)
     @ResponseBody
+    @RequestMapping("/allTree")
     public List<Tree> allTree() {
         return resourceService.findAllTree();
     }
@@ -111,8 +114,9 @@ public class ResourceController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "/allTrees", method = RequestMethod.POST)
+    @Permission(action = Action.Skip)
     @ResponseBody
+    @RequestMapping(value = "/allTrees", method = RequestMethod.POST)
     public List<Tree> allTrees() {
         return resourceService.findAllTrees();
     }
@@ -124,6 +128,7 @@ public class ResourceController extends BaseController {
      * @param id
      * @return
      */
+    @Permission(action = Action.Skip)
     @RequestMapping("/editPage")
     public String editPage(HttpServletRequest request, Long id) {
         Resource resource = resourceService.findResourceById(id);
@@ -137,8 +142,9 @@ public class ResourceController extends BaseController {
      * @param resource
      * @return
      */
-    @RequestMapping("/edit")
+    @Permission(action = Action.Skip)
     @ResponseBody
+    @RequestMapping("/edit")
     public Result edit(Resource resource) {
         Result result = new Result();
         try {
@@ -159,8 +165,9 @@ public class ResourceController extends BaseController {
      * @param id
      * @return
      */
-    @RequestMapping("/delete")
+    @Permission(action = Action.Skip)
     @ResponseBody
+    @RequestMapping("/delete")
     public Result delete(Long id) {
         Result result = new Result();
         try {

@@ -11,23 +11,6 @@ public interface ResourceMapper extends AutoMapper<Resource> {
 	
 	
 	List<Resource> selectByUserId(Long userId);
-	
-	
-    /**
-     * 添加资源
-     *
-     * @param resource
-     * @return
-     */
-    int insert(Resource resource);
-
-    /**
-     * 修改资源
-     *
-     * @param resource
-     * @return
-     */
-    int updateResource(Resource resource);
 
     /**
      * 查询菜单资源
@@ -52,20 +35,4 @@ public interface ResourceMapper extends AutoMapper<Resource> {
      * @return
      */
     List<Resource> findResourceAllByTypeAndPidNull(Integer resourceMenu);
-
-    /**
-     * 根据id查询资源
-     *
-     * @param id
-     * @return
-     */
-    Resource findResourceById(Long id);
-
-    /**
-     * 删除资源
-     *
-     * @param id
-     * @return
-     */
-    int deleteResourceById(Long id);
 }

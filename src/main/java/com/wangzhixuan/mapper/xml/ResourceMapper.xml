@@ -27,14 +27,6 @@
 		user_role U WHERE U.role_id=R.role_id AND U.user_id=#{userId})) B WHERE A.id=B.resource_id)
 	</select>
 
-	<select id="findResourceById" resultMap="BaseResultMap"
-		parameterType="java.lang.Long">
-		select
-		<include refid="Base_Column_List" />
-		from resource
-		where id = #{id,jdbcType=BIGINT}
-	</select>
-
     <!-- 查询所有父菜单 -->
 	<select id="findResourceAllByTypeAndPidNull" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -58,58 +50,4 @@
 		<include refid="Base_Column_List" />
 		from resource order by seq
 	</select>
-
-	<delete id="deleteResourceById" parameterType="java.lang.Long">
-		delete from resource
-		where id = #{id,jdbcType=BIGINT}
-	</delete>
-
-	<insert id="insert" parameterType="Resource">
-		<selectKey resultType="java.lang.Long" keyProperty="id"
-			order="AFTER">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
-		insert into resource (name, url, description,
-		icon, pid, seq, status,
-		resourcetype, createdate)
-		values (#{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR},
-		#{description,jdbcType=VARCHAR},
-		#{icon,jdbcType=VARCHAR}, #{pid,jdbcType=BIGINT}, #{seq,jdbcType=TINYINT},
-		#{status,jdbcType=TINYINT},
-		#{resourcetype,jdbcType=TINYINT}, now())
-	</insert>
-
-	<update id="updateResource" parameterType="Resource">
-		update resource
-		<set>
-			<if test="name != null">
-				name = #{name,jdbcType=VARCHAR},
-			</if>
-			<if test="url != null">
-				url = #{url,jdbcType=VARCHAR},
-			</if>
-			<if test="description != null">
-				description = #{description,jdbcType=VARCHAR},
-			</if>
-			<if test="icon != null">
-				icon = #{icon,jdbcType=VARCHAR},
-			</if>
-			<if test="pid != null">
-				pid = #{pid,jdbcType=BIGINT},
-			</if>
-			<if test="seq != null">
-				seq = #{seq,jdbcType=TINYINT},
-			</if>
-			<if test="status != null">
-				status = #{status,jdbcType=TINYINT},
-			</if>
-			<if test="resourcetype != null">
-				resourcetype = #{resourcetype,jdbcType=TINYINT},
-			</if>
-			<if test="createdate != null">
-				createdate = now(),
-			</if>
-		</set>
-		where id = #{id,jdbcType=BIGINT}
-	</update>
 </mapper>

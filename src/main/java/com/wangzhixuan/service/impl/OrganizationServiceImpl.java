@@ -1,15 +1,16 @@
 package com.wangzhixuan.service.impl;
 
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.google.common.collect.Lists;
 import com.wangzhixuan.mapper.OrganizationMapper;
 import com.wangzhixuan.model.Organization;
 import com.wangzhixuan.model.vo.Tree;
 import com.wangzhixuan.service.OrganizationService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
@@ -58,22 +59,23 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public void addOrganization(Organization organization) {
+    	organization.setCreatedate(new Date());
         organizationMapper.insert(organization);
     }
 
     @Override
     public Organization findOrganizationById(Long id) {
-        return organizationMapper.findOrganizationById(id);
+        return organizationMapper.selectById(id);
     }
 
     @Override
     public void updateOrganization(Organization organization) {
-        organizationMapper.updateOrganization(organization);
+        organizationMapper.updateById(organization);
     }
 
     @Override
     public void deleteOrganizationById(Long id) {
-        organizationMapper.deleteOrganizationById(id);
+        organizationMapper.deleteById(id);
     }
 
 }

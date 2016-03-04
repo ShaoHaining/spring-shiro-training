@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.baomidou.kisso.annotation.Action;
+import com.baomidou.kisso.annotation.Permission;
 import com.google.common.collect.Maps;
 import com.wangzhixuan.common.Result;
 import com.wangzhixuan.common.utils.PageInfo;
@@ -51,6 +53,7 @@ public class RoleController extends BaseController {
      * @param order
      * @return
      */
+    @Permission(action = Action.Skip)
     @RequestMapping(value = "/dataGrid", method = RequestMethod.POST)
     @ResponseBody
     public PageInfo dataGrid(Role role, Integer page, Integer rows, String sort, String order) {
@@ -67,6 +70,7 @@ public class RoleController extends BaseController {
      *
      * @return
      */
+    @Permission(action = Action.Skip)
     @RequestMapping(value = "/tree", method = RequestMethod.POST)
     @ResponseBody
     public List<Tree> tree() {
@@ -78,6 +82,7 @@ public class RoleController extends BaseController {
      *
      * @return
      */
+    @Permission(action = Action.Skip)
     @RequestMapping(value = "/addPage", method = RequestMethod.GET)
     public String addPage() {
         return "/admin/roleAdd";
@@ -89,6 +94,7 @@ public class RoleController extends BaseController {
      * @param role
      * @return
      */
+    @Permission(action = Action.Skip)
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public Result add(Role role) {
@@ -111,6 +117,7 @@ public class RoleController extends BaseController {
      * @param id
      * @return
      */
+    @Permission(action = Action.Skip)
     @RequestMapping("/delete")
     @ResponseBody
     public Result delete(Long id) {
@@ -134,6 +141,7 @@ public class RoleController extends BaseController {
      * @param id
      * @return
      */
+    @Permission(action = Action.Skip)
     @RequestMapping("/editPage")
     public String editPage(HttpServletRequest request, Long id) {
         Role role = roleService.findRoleById(id);
@@ -147,6 +155,7 @@ public class RoleController extends BaseController {
      * @param role
      * @return
      */
+    @Permission(action = Action.Skip)
     @RequestMapping("/edit")
     @ResponseBody
     public Result edit(Role role) {
@@ -171,6 +180,7 @@ public class RoleController extends BaseController {
      * @param model
      * @return
      */
+    @Permission(action = Action.Skip)
     @RequestMapping("/grantPage")
     public String grantPage(HttpServletRequest request, Long id, Model model) {
         model.addAttribute("id", id);
@@ -185,6 +195,7 @@ public class RoleController extends BaseController {
      * @param model
      * @return
      */
+    @Permission(action = Action.Skip)
     @RequestMapping("/findResourceIdListByRoleId")
     @ResponseBody
     public Result findResourceByRoleId(HttpServletRequest request, Long id, Model model) {
@@ -208,6 +219,7 @@ public class RoleController extends BaseController {
      * @param resourceIds
      * @return
      */
+    @Permission(action = Action.Skip)
     @RequestMapping("/grant")
     @ResponseBody
     public Result grant(Long id, String resourceIds) {

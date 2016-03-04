@@ -11,9 +11,10 @@
         <result column="seq" property="seq" jdbcType="TINYINT"/>
         <result column="createdate" property="createdate" jdbcType="TIMESTAMP"/>
     </resultMap>
+    
     <sql id="Base_Column_List">
-    id, name, address, code, icon, pid, seq, createDate
-  </sql>
+	    id, name, address, code, icon, pid, seq, createDate
+    </sql>
 
     <select id="findOrganizationAllByPidNull" resultMap="BaseResultMap">
         select distinct
@@ -32,56 +33,5 @@
         <include refid="Base_Column_List"/>
         from organization order by seq
     </select>
-
-    <select id="findOrganizationById" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from organization where id = #{id}
-    </select>
-
-    <delete id="deleteOrganizationById" parameterType="java.lang.Long">
-    delete from organization
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-
-    <insert id="insert" parameterType="Organization">
-        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
-        insert into organization (name, address, code,
-        icon, pid, seq, createdate
-        )
-        values (#{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR},
-        #{icon,jdbcType=VARCHAR}, #{pid,jdbcType=BIGINT}, #{seq,jdbcType=TINYINT}, now()
-        )
-    </insert>
-
-    <update id="updateOrganization" parameterType="Organization">
-        update organization
-        <set>
-            <if test="name != null">
-                name = #{name,jdbcType=VARCHAR},
-            </if>
-            <if test="address != null">
-                address = #{address,jdbcType=VARCHAR},
-            </if>
-            <if test="code != null">
-                code = #{code,jdbcType=VARCHAR},
-            </if>
-            <if test="icon != null">
-                icon = #{icon,jdbcType=VARCHAR},
-            </if>
-            <if test="pid != null">
-                pid = #{pid,jdbcType=BIGINT},
-            </if>
-            <if test="seq != null">
-                seq = #{seq,jdbcType=TINYINT},
-            </if>
-            <if test="createdate != null">
-                createdate = now(),
-            </if>
-        </set>
-        where id = #{id,jdbcType=BIGINT}
-    </update>
 
 </mapper>
