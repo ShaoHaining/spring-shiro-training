@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.baomidou.kisso.annotation.Action;
+import com.baomidou.kisso.annotation.Permission;
 import com.google.common.collect.Maps;
 import com.wangzhixuan.common.utils.PageInfo;
 import com.wangzhixuan.model.SysLog;
@@ -22,23 +24,25 @@ import com.wangzhixuan.service.LogService;
 @RequestMapping("/sysLog")
 public class SysLogController extends BaseController {
 
-    @Autowired
-    private LogService logService;
+	@Autowired
+	private LogService logService;
 
 
-    @RequestMapping(value = "/manager", method = RequestMethod.GET)
-    public String manager() {
-        return "/admin/syslog";
-    }
+	@Permission(action = Action.Skip)
+	@RequestMapping(value = "/manager", method = RequestMethod.GET)
+	public String manager() {
+		return "/admin/syslog";
+	}
 
 
-    @RequestMapping(value = "/dataGrid", method = RequestMethod.POST)
-    @ResponseBody
-    public PageInfo dataGrid(SysLog sysLog, Integer page, Integer rows) {
-        PageInfo pageInfo = new PageInfo(page, rows);
-        Map<String, Object> condition = Maps.newHashMap();
-        pageInfo.setCondition(condition);
-        logService.findDataGrid(pageInfo);
-        return pageInfo;
-    }
+	@Permission(action = Action.Skip)
+	@ResponseBody
+	@RequestMapping(value = "/dataGrid", method = RequestMethod.POST)
+	public PageInfo dataGrid( SysLog sysLog, Integer page, Integer rows ) {
+		PageInfo pageInfo = new PageInfo(page, rows);
+		Map<String, Object> condition = Maps.newHashMap();
+		pageInfo.setCondition(condition);
+		logService.findDataGrid(pageInfo);
+		return pageInfo;
+	}
 }

@@ -6,17 +6,18 @@ import org.springframework.stereotype.Service;
 import com.wangzhixuan.common.annotation.DataSourceChange;
 import com.wangzhixuan.mapper.SlaveMapper;
 import com.wangzhixuan.service.SlaveService;
+
 @Service
 public class SlaveServiceImpl implements SlaveService {
 
-    @Autowired
-    private SlaveMapper slaveMapper;
+	@Autowired
+	private SlaveMapper slaveMapper;
 
-    @Override
-    @DataSourceChange(slave = true)
-    public Integer count() {
-        return slaveMapper.count();
-    }
 
+	@Override
+	@DataSourceChange(slave = true)
+	public Integer count() {
+		return slaveMapper.count();
+	}
 
 }

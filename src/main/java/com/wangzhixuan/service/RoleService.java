@@ -1,11 +1,11 @@
 package com.wangzhixuan.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.wangzhixuan.common.utils.PageInfo;
 import com.wangzhixuan.model.Role;
 import com.wangzhixuan.model.vo.Tree;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * @description：权限管理
@@ -72,14 +72,7 @@ public interface RoleService {
      */
     void updateRoleResource(Long id, String resourceIds);
 
-    /**
-     * 根据用户查询id查询权限集合
-     *
-     * @param userId
-     * @return
-     */
-    List<Long> findRoleIdListByUserId(Long userId);
-
+	
     /**
      * 根据权限查询id查询资源路径集合
      *

@@ -32,4 +32,31 @@
 		<property name="basePackage" value="com.wangzhixuan.mapper" />
 	</bean>
 
+    <!-- 主库 
+    <bean name="master-dataSource" parent="baseDataSource" init-method="init">
+        <property name="url" value="${master_driverUrl}" />
+        <property name="username" value="${master_username}" />
+        <property name="password" value="${master_password}" />
+    </bean>
+    -->
+    <!-- 从库 
+    <bean name="slave-dataSource" parent="baseDataSource" init-method="init">
+        <property name="url" value="${slave_driverUrl}" />
+        <property name="username" value="${slave_username}" />
+        <property name="password" value="${slave_password}" />
+    </bean>
+	-->
+    <!--数据源切面注入spring
+    <bean id="dsChangeAspect" class="com.wangzhixuan.aop.DataSourceAspect"/>
+	-->
+    <!--主从库选择
+    <bean id="dynamicDataSource" class="com.wangzhixuan.datasource.DynamicDataSource">
+        <property name="master" ref="master-dataSource"/>
+        <property name="slaves">
+            <list>
+                <ref bean="slave-dataSource"/>
+            </list>
+        </property>
+    </bean>
+    -->
 </beans>

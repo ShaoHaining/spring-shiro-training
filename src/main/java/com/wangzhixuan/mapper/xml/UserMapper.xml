@@ -6,14 +6,6 @@
 		orgId, phone, crTime
 	</sql>
 
-	<select id="findUserByLoginName" resultType="User"
-		parameterType="java.lang.String">
-		select
-		<include refid="Base_Column_List" />
-		from user
-		where loginname = #{username}
-	</select>
-
 	<select id="findUserVoById" resultType="UserVo"
 		parameterType="java.lang.Long">
 		SELECT
@@ -52,32 +44,32 @@
 		age,
 		type,
 		t.`status`,
-		organization_id,
-		t.createdate,
+		orgId,
+		t.crTime,
 		phone,
 		s.`name` AS organizationName,
 		o.id AS roleId,
 		o.`name` AS roleName
 		FROM
 		user t
-		LEFT JOIN user_role r ON t.id = r.user_id
-		LEFT JOIN role o ON r.role_id = o.id
-		LEFT JOIN organization s ON s.id = t.organization_id
+		LEFT JOIN user_role r ON t.id = r.userId
+		LEFT JOIN role o ON r.roleId = o.id
+		LEFT JOIN organization s ON s.id = t.orgId
 		<where>
 			<if test=" condition.name != null and condition.name != '' ">
 				t.name = #{condition.name}
 			</if>
-			<if test=" condition.organizationId != null ">
-				t.organization_id = #{condition.organizationId}
+			<if test=" condition.orgId != null ">
+				t.orgId = #{condition.orgId}
 			</if>
 			<if test="condition.startTime != null">
                 <![CDATA[
-            and t.createdate >= #{condition.startTime}
+            and t.crTime >= #{condition.startTime}
            ]]>
 			</if>
 			<if test="condition.endTime != null">
                 <![CDATA[
-            and t.createdate <= #{condition.endTime}
+            and t.crTime <= #{condition.endTime}
         ]]>
 			</if>
 		</where>
@@ -92,26 +84,19 @@
 			<if test=" condition.name != null and condition.name != '' ">
 				t.name = #{condition.name}
 			</if>
-			<if test=" condition.organizationId != null ">
-				t.organization_id = #{condition.organizationId}
+			<if test=" condition.orgId != null ">
+				t.orgId = #{condition.orgId}
 			</if>
 			<if test="condition.startTime != null">
                 <![CDATA[
-            and t.createdate >= #{condition.startTime}
+            and t.crTime >= #{condition.startTime}
            ]]>
 			</if>
 			<if test="condition.endTime != null">
                 <![CDATA[
-            and t.createdate <= #{condition.endTime}
+            and t.crTime <= #{condition.endTime}
             ]]>
 			</if>
 		</where>
 	</select>
-
-	<update id="updateUserPwdById">
-		update user
-		set password = #{pwd,jdbcType=VARCHAR},
-		createdate = now()
-		where id = #{userId,jdbcType=BIGINT}
-	</update>
 </mapper>

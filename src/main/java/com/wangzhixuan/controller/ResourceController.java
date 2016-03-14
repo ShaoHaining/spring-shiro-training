@@ -56,8 +56,9 @@ public class ResourceController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "/treeGrid", method = RequestMethod.POST)
+    @Permission(action = Action.Skip)
     @ResponseBody
+    @RequestMapping(value = "/treeGrid", method = RequestMethod.POST)
     public List<Resource> treeGrid() {
         List<Resource> treeGrid = resourceService.findResourceAll();
         return treeGrid;

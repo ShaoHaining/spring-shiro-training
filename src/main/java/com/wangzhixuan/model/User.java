@@ -3,6 +3,7 @@ package com.wangzhixuan.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotations.IdType;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -19,7 +20,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/** 主键ID */
-	@TableId
+	@TableId(type = IdType.AUTO)
 	private Long id;
 
 	/** 登录名称 */

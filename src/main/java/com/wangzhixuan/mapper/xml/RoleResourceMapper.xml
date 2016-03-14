@@ -15,20 +15,4 @@
 		WHERE
 		r.id = #{id}
 	</select>
-
-	<delete id="deleteById" parameterType="java.lang.Long">
-		delete from role_resource
-		where id = #{id,jdbcType=BIGINT}
-	</delete>
-
-	<insert id="insert" parameterType="RoleResource">
-		<selectKey resultType="java.lang.Long" keyProperty="id"
-			order="AFTER">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
-		insert into role_resource (role_id, resource_id)
-		values (#{roleId,jdbcType=BIGINT}, #{resourceId,jdbcType=BIGINT})
-	</insert>
-
-
 </mapper>

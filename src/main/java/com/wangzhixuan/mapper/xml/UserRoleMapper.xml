@@ -5,15 +5,4 @@
 		id, userId, roleId
 	</sql>
 
-	<select id="findUserRoleByUserId" resultType="UserRole"
-		parameterType="java.lang.Long">
-		SELECT
-		<include refid="Base_Column_List" />
-		FROM user_role WHERE userId = #{userId}
-	</select>
-
-	<select id="findRoleIdListByUserId" resultType="java.lang.Long"
-		parameterType="java.lang.Long">
-		SELECT roleId FROM user_role WHERE userId = #{userId}
-	</select>
 </mapper>

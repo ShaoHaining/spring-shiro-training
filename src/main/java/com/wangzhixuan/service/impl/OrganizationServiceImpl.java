@@ -14,68 +14,76 @@ import com.wangzhixuan.service.OrganizationService;
 
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
-    @Autowired
-    private OrganizationMapper organizationMapper;
 
-    @Override
-    public List<Tree> findTree() {
-        List<Tree> trees = Lists.newArrayList();
+	@Autowired
+	private OrganizationMapper organizationMapper;
 
-        List<Organization> organizationFather = organizationMapper.findOrganizationAllByPidNull();
 
-        if (organizationFather != null) {
-            for (Organization organizationOne : organizationFather) {
-                Tree treeOne = new Tree();
+	@Override
+	public List<Tree> findTree() {
+		List<Tree> trees = Lists.newArrayList();
 
-                treeOne.setId(organizationOne.getId());
-                treeOne.setText(organizationOne.getName());
-                treeOne.setIconCls(organizationOne.getIcon());
+		List<Organization> organizationFather = organizationMapper.findOrganizationAllByPidNull();
 
-                List<Organization> organizationSon = organizationMapper.findOrganizationAllByPid(organizationOne.getId());
+		if ( organizationFather != null ) {
+			for ( Organization organizationOne : organizationFather ) {
+				Tree treeOne = new Tree();
 
-                if (organizationSon != null) {
-                    List<Tree> tree = Lists.newArrayList();
-                    for (Organization organizationTwo : organizationSon) {
-                        Tree treeTwo = new Tree();
-                        treeTwo.setId(organizationTwo.getId());
-                        treeTwo.setText(organizationTwo.getName());
-                        treeTwo.setIconCls(organizationTwo.getIcon());
-                        tree.add(treeTwo);
-                    }
-                    treeOne.setChildren(tree);
-                } else {
-                    treeOne.setState("closed");
-                }
-                trees.add(treeOne);
-            }
-        }
-        return trees;
-    }
+				treeOne.setId(organizationOne.getId());
+				treeOne.setText(organizationOne.getName());
+				treeOne.setIconCls(organizationOne.getIcon());
 
-    @Override
-    public List<Organization> findTreeGrid() {
-        return organizationMapper.findOrganizationAll();
-    }
+				List<Organization> organizationSon = organizationMapper
+						.findOrganizationAllByPid(organizationOne.getId());
 
-    @Override
-    public void addOrganization(Organization organization) {
-    	organization.setCrTime(new Date());
-        organizationMapper.insert(organization);
-    }
+				if ( organizationSon != null ) {
+					List<Tree> tree = Lists.newArrayList();
+					for ( Organization organizationTwo : organizationSon ) {
+						Tree treeTwo = new Tree();
+						treeTwo.setId(organizationTwo.getId());
+						treeTwo.setText(organizationTwo.getName());
+						treeTwo.setIconCls(organizationTwo.getIcon());
+						tree.add(treeTwo);
+					}
+					treeOne.setChildren(tree);
+				} else {
+					treeOne.setState("closed");
+				}
+				trees.add(treeOne);
+			}
+		}
+		return trees;
+	}
 
-    @Override
-    public Organization findOrganizationById(Long id) {
-        return organizationMapper.selectById(id);
-    }
 
-    @Override
-    public void updateOrganization(Organization organization) {
-        organizationMapper.updateById(organization);
-    }
+	@Override
+	public List<Organization> findTreeGrid() {
+		return organizationMapper.findOrganizationAll();
+	}
 
-    @Override
-    public void deleteOrganizationById(Long id) {
-        organizationMapper.deleteById(id);
-    }
+
+	@Override
+	public void addOrganization( Organization organization ) {
+		organization.setCrTime(new Date());
+		organizationMapper.insert(organization);
+	}
+
+
+	@Override
+	public Organization findOrganizationById( Long id ) {
+		return organizationMapper.selectById(id);
+	}
+
+
+	@Override
+	public void updateOrganization( Organization organization ) {
+		organizationMapper.updateById(organization);
+	}
+
+
+	@Override
+	public void deleteOrganizationById( Long id ) {
+		organizationMapper.deleteById(id);
+	}
 
 }

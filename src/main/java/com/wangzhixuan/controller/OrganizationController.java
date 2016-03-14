@@ -44,8 +44,9 @@ public class OrganizationController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "/tree", method = RequestMethod.POST)
+    @Permission(action = Action.Skip)
     @ResponseBody
+    @RequestMapping(value = "/tree", method = RequestMethod.POST)
     public List<Tree> tree() {
         List<Tree> trees = organizationService.findTree();
         return trees;
@@ -56,8 +57,9 @@ public class OrganizationController extends BaseController {
      *
      * @return
      */
-    @RequestMapping("/treeGrid")
+    @Permission(action = Action.Skip)
     @ResponseBody
+    @RequestMapping("/treeGrid")
     public List<Organization> treeGrid() {
         List<Organization> treeGrid = organizationService.findTreeGrid();
         return treeGrid;
