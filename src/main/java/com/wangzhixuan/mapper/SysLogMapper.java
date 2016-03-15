@@ -5,8 +5,4 @@ import com.wangzhixuan.model.SysLog;
 
 public interface SysLogMapper extends AutoMapper<SysLog> {
 
-//	List findDataGrid( PageInfo pageInfo );
-//
-//
-//	int findDataGridCount( PageInfo pageInfo );
 }

@@ -4,16 +4,5 @@
 	<sql id="Base_Column_List">
 		id, loginName, roleName, content, ip, crTime
 	</sql>
-
-	<select id="findDataGrid" resultType="SysLog" parameterType="PageInfo">
-		select
-		<include refid="Base_Column_List" />
-		from sys_log ORDER BY crTime DESC LIMIT #{from}, #{ size}
-	</select>
-
-	<select id="findDataGridCount" resultType="java.lang.Integer"
-		parameterType="PageInfo">
-		select count(*) count
-		from sys_log
-	</select>
+	
 </mapper>
