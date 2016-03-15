@@ -22,13 +22,12 @@
 		<!-- data -->
 		<druid.version>1.0.12</druid.version>
 		<mysql-connector-java.version>5.1.34</mysql-connector-java.version>
-		<mybatis-spring.version>1.2.3</mybatis-spring.version>
-		<mybatis-plus.version>1.2.2</mybatis-plus.version>
+		<mybatis-plus.version>1.2.3</mybatis-plus.version>
 		<mail.version>1.4.7</mail.version>
 		<guava.version>19.0</guava.version>
 
 		<!-- kisso -->
-		<kisso.version>3.6.1</kisso.version>
+		<kisso.version>3.6.2</kisso.version>
 		<bcprov.version>1.50</bcprov.version>
 		<fastjson.version>1.2.8</fastjson.version>
 	</properties>
@@ -154,11 +153,6 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql-connector-java.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis-spring</artifactId>
-			<version>${mybatis-spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.baomidou</groupId>

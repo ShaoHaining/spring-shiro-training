@@ -3,19 +3,12 @@ package com.wangzhixuan.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.baomidou.kisso.SSOHelper;
-import com.baomidou.kisso.SSOToken;
+import com.baomidou.framework.controller.SuperController;
 import com.wangzhixuan.common.Result;
 import com.wangzhixuan.common.utils.StringEscapeEditor;
 import com.wangzhixuan.model.User;
@@ -25,9 +18,7 @@ import com.wangzhixuan.service.UserService;
  * @description：基础 controller
  * @author：zhixuan.wang @date：2015/10/1 14:51
  */
-public class BaseController {
-
-	protected Logger logger = LoggerFactory.getLogger(this.getClass());
+public class BaseController extends SuperController {
 
 	@Autowired
 	private UserService userService;
@@ -83,18 +74,4 @@ public class BaseController {
 		return userService.findUserById(getCurrentUserId());
 	}
 
-
-	public Long getCurrentUserId() {
-		return getSSOToken().getId();
-	}
-
-
-	protected SSOToken getSSOToken() {
-		return SSOHelper.attrToken(getRequest());
-	}
-
-
-	protected HttpServletRequest getRequest() {
-		return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-	}
 }

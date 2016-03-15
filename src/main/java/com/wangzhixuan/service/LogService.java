@@ -1,6 +1,6 @@
 package com.wangzhixuan.service;
 
-import com.wangzhixuan.common.utils.PageInfo;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.wangzhixuan.model.SysLog;
 
 /**
@@ -12,5 +12,5 @@ public interface LogService {
 
     void insertLog(SysLog sysLog);
 
-    void findDataGrid(PageInfo pageInfo);
+    Page<SysLog> findDataGrid(Page<SysLog> sysLogPage);
 }

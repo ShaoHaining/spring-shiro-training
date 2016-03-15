@@ -1,12 +1,15 @@
 package com.wangzhixuan.service.impl;
 
-import com.wangzhixuan.common.utils.PageInfo;
-import com.wangzhixuan.mapper.SysLogMapper;
-import com.wangzhixuan.model.SysLog;
-import com.wangzhixuan.service.LogService;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.wangzhixuan.mapper.SysLogMapper;
+import com.wangzhixuan.model.SysLog;
+import com.wangzhixuan.service.LogService;
 
 /**
  * @description：
@@ -26,9 +29,16 @@ public class LogServiceImpl implements LogService {
 	}
 
 
+//	@Override
+//	public void findDataGrid( PageInfo pageInfo ) {
+//		pageInfo.setRows(sysLogMapper.findDataGrid(pageInfo));
+//		pageInfo.setTotal(sysLogMapper.findDataGridCount(pageInfo));
+//	}
 	@Override
-	public void findDataGrid( PageInfo pageInfo ) {
-		pageInfo.setRows(sysLogMapper.findDataGrid(pageInfo));
-		pageInfo.setTotal(sysLogMapper.findDataGridCount(pageInfo));
+	public Page<SysLog> findDataGrid( Page<SysLog> sysLogPage ) {
+		EntityWrapper<SysLog> ew = new EntityWrapper<SysLog>(null, "crTime DESC");
+		List<SysLog> sysLogList = sysLogMapper.selectList(sysLogPage, ew);
+		sysLogPage.setRecords(sysLogList);
+		return sysLogPage;
 	}
 }

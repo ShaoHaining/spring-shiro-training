@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.baomidou.kisso.Token;
 import com.baomidou.kisso.common.shiro.ShiroPermission;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.wangzhixuan.common.utils.Config;
@@ -116,7 +117,7 @@ public class ResourceServiceImpl implements ResourceService, ShiroPermission {
 	public List<UserRole> findUserRoleByUserId( Long userId ) {
 		UserRole ur = new UserRole();
 		ur.setUserId(userId);
-		return userRoleMapper.selectList(RowBounds.DEFAULT, ur);
+		return userRoleMapper.selectList(RowBounds.DEFAULT, new EntityWrapper<UserRole>(ur, null));
 	}
 
 

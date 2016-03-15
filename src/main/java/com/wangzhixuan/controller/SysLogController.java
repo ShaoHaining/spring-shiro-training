@@ -1,7 +1,5 @@
 package com.wangzhixuan.controller;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.kisso.annotation.Action;
 import com.baomidou.kisso.annotation.Permission;
-import com.google.common.collect.Maps;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.wangzhixuan.common.utils.PageInfo;
 import com.wangzhixuan.model.SysLog;
 import com.wangzhixuan.service.LogService;
@@ -35,14 +33,14 @@ public class SysLogController extends BaseController {
 	}
 
 
-	@Permission(action = Action.Skip)
 	@ResponseBody
-	@RequestMapping(value = "/dataGrid", method = RequestMethod.POST)
-	public PageInfo dataGrid( SysLog sysLog, Integer page, Integer rows ) {
-		PageInfo pageInfo = new PageInfo(page, rows);
-		Map<String, Object> condition = Maps.newHashMap();
-		pageInfo.setCondition(condition);
-		logService.findDataGrid(pageInfo);
+	@Permission(action = Action.Skip)
+	@RequestMapping(value = "/dataGrid")
+	public PageInfo dataGrid() {
+		Page<SysLog> sysLogPage = getPage();
+		sysLogPage = logService.findDataGrid(sysLogPage);
+		PageInfo pageInfo = new PageInfo(sysLogPage.getCurrent(), sysLogPage.getPages());
+		pageInfo.setRows(sysLogPage.getRecords());
 		return pageInfo;
 	}
 }

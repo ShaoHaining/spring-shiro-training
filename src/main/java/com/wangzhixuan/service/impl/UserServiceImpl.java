@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.wangzhixuan.common.utils.PageInfo;
 import com.wangzhixuan.mapper.UserMapper;
 import com.wangzhixuan.mapper.UserRoleMapper;
@@ -132,7 +133,7 @@ public class UserServiceImpl implements UserService {
 	public List<UserRole> findUserRoleByUserId( Long userId ) {
 		UserRole ur = new UserRole();
 		ur.setUserId(userId);
-		return userRoleMapper.selectList(RowBounds.DEFAULT, ur);
+		return userRoleMapper.selectList(RowBounds.DEFAULT, new EntityWrapper<UserRole>(ur, null));
 	}
 
 }
