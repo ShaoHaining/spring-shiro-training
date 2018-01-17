@@ -79,35 +79,22 @@
         
         indexMenuZTree = $.fn.zTree.init($("#layout_west_tree"), {
             data: {
-                key: {
-                    name: "text"
-                },
                 simpleData: {
                     enable: true,
-                    idKey: "id",
-                    pIdKey: "pid",
                     rootPId: 1
                 }
             },
+            view: {
+        			txtSelectedEnable: true
+       	 	},
             async: {
                 enable: true,
-                url:"${path}/resource/tree",
-                dataFilter: function (treeId, parentNode, responseData) {
-                    if (responseData) {
-                        for (var i =0; i < responseData.length; i++) {
-                            var node = responseData[i];
-                            if (node.state == "open") {
-                                node.open = true;
-                            }
-                        }
-                    }
-                    return responseData;
-                }
+                url:"${path}/resource/tree"
             },
             callback: {
                 onClick: function(event, treeId, node) {
                     var opts = {
-                        title : node.text,
+                        title : node.name,
                         border : false,
                         closable : true,
                         fit : true,

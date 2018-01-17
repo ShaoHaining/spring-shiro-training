@@ -14,7 +14,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.wangzhixuan.commons.result.PageInfo;
-import com.wangzhixuan.commons.result.Tree;
+import com.wangzhixuan.commons.result.ZTree;
 import com.wangzhixuan.commons.utils.StringUtils;
 import com.wangzhixuan.mapper.RoleMapper;
 import com.wangzhixuan.mapper.RoleResourceMapper;
@@ -58,13 +58,12 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
 
     @Override
     public Object selectTree() {
-        List<Tree> trees = new ArrayList<Tree>();
+        List<ZTree> trees = new ArrayList<ZTree>();
         List<Role> roles = this.selectAll();
         for (Role role : roles) {
-            Tree tree = new Tree();
+        		ZTree tree = new ZTree();
             tree.setId(role.getId());
-            tree.setText(role.getName());
-
+            tree.setName(role.getName());
             trees.add(tree);
         }
         return trees;

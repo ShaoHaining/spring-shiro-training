@@ -5,14 +5,26 @@
     var organizationTree;
 
     $(function() {
-        organizationTree = $('#organizationTree').tree({
-            url : '${path }/organization/tree',
-            parentField : 'pid',
-            lines : true,
-            onClick : function(node) {
-                userDataGrid.datagrid('load', {
-                    organizationId: node.id
-                });
+        organizationTree = $.fn.zTree.init($('#organizationTree'), {
+            data: {
+                simpleData: {
+                    enable: true,
+                    rootPId: 1
+                }
+            },
+            view: {
+    				txtSelectedEnable: true
+   	 		},
+            async: {
+                enable: true,
+                url:"${path }/organization/tree"
+            },
+            callback: {
+                onClick: function(event, treeId, node) {
+                		userDataGrid.datagrid('load', {
+                        organizationId: node.id
+                    });
+                }
             }
         });
 
@@ -225,7 +237,7 @@
         <table id="userDataGrid" data-options="fit:true,border:false"></table>
     </div>
     <div data-options="region:'west',border:true,split:false,title:'组织机构'"  style="width:150px;overflow: hidden; ">
-        <ul id="organizationTree" style="width:160px;margin: 10px 10px 10px 10px"></ul>
+        <ul id="organizationTree" class="ztree"></ul>
     </div>
 </div>
 <div id="userToolbar" style="display: none;">

@@ -3,7 +3,7 @@ package com.wangzhixuan.service;
 import java.util.List;
 
 import com.baomidou.mybatisplus.service.IService;
-import com.wangzhixuan.commons.result.Tree;
+import com.wangzhixuan.commons.result.ZTree;
 import com.wangzhixuan.commons.shiro.ShiroUser;
 import com.wangzhixuan.model.Resource;
 
@@ -16,10 +16,10 @@ public interface IResourceService extends IService<Resource> {
 
     List<Resource> selectAll();
 
-    List<Tree> selectAllMenu();
+    List<ZTree> selectAllMenu();
 
-    List<Tree> selectAllTree();
+    List<ZTree> selectAllTree();
 
-    List<Tree> selectTree(ShiroUser shiroUser);
+    List<ZTree> selectTree(ShiroUser shiroUser);
 
 }

@@ -2,23 +2,23 @@
 <%@ include file="/commons/global.jsp" %>
 <script type="text/javascript">
     $(function() {
-        $('#userEditorganizationId').combotree({
+		$('#userEditorganizationId').comboZTree({
             url : '${path }/organization/tree',
-            parentField : 'pid',
-            lines : true,
-            panelHeight : 'auto',
-            value : '${user.organizationId}'
+			check: {
+				enable: true,
+				chkStyle: "radio",
+				radioType: "all"
+			},
+			value : ${user.organizationId}
         });
 
-        $('#userEditRoleIds').combotree({
+    		$('#userEditRoleIds').comboZTree({
             url : '${path }/role/tree',
-            parentField : 'pid',
-            lines : true,
-            panelHeight : 'auto',
-            multiple : true,
-            required : true,
-            cascadeCheck : false,
-            value : ${roleIds }
+            check: {
+            		enable: true,
+				chkboxType: {"Y":"", "N":""}
+			},
+			value : ${roleIds}
         });
 
         $('#userEditForm').form({
@@ -35,7 +35,7 @@
                 progressClose();
                 result = $.parseJSON(result);
                 if (result.success) {
-                    parent.$.modalDialog.openner_dataGrid.datagrid('reload');//之所以能在这里调用到parent.$.modalDialog.openner_dataGrid这个对象，是因为user.jsp页面预定义好了
+                		parent.organizationTree.reAsyncChildNodes(null, "refresh");//是因为user.jsp页面预定义好了
                     parent.$.modalDialog.handler.dialog('close');
                 } else {
                     var form = $('#userEditForm');

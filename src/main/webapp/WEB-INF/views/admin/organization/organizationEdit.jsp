@@ -2,12 +2,14 @@
 <%@ include file="/commons/global.jsp" %>
 <script type="text/javascript">
     $(function() {
-        $('#organizationEditPid').combotree({
+		$('#organizationEditPid').comboZTree({
             url : '${path }/organization/tree?flag=false',
-            parentField : 'pid',
-            lines : true,
-            panelHeight : 'auto',
-            value :'${organization.pid}'
+			check: {
+				enable: true,
+				chkStyle: "radio",
+				radioType: "all"
+			},
+			value :'${organization.pid}'
         });
         
         $('#organizationEditForm').form({

@@ -1,34 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/commons/global.jsp" %>
 <script type="text/javascript">
-    var resourceTree;
     $(function() {
-        resourceTree = $('#resourceTree').tree({
-            url : '${path }/resource/allTrees',
-            parentField : 'pid',
-            lines : true,
-            checkbox : true,
-            onClick : function(node) {},
-            onLoadSuccess : function(node, data) {
-                progressLoad();
-                $.post( '${path }/role/findResourceIdListByRoleId', {
-                    id : '${id}'
-                }, function(result) {
-                    var ids;
-                    if (result.success == true && result.obj != undefined) {
-                        ids = $.stringToList(result.obj + '');
-                    }
-                    if (ids.length > 0) {
-                        for ( var i = 0; i < ids.length; i++) {
-                            if (resourceTree.tree('find', ids[i])) {
-                                resourceTree.tree('check', resourceTree.tree('find', ids[i]).target);
-                            }
-                        }
-                    }
-                }, 'json');
-                progressClose();
+    		$.fn.zTree.init($("#resourceTree"), {
+    			check: {
+    				enable: true,
+    				nocheckInherit: true,
+    				chkboxType: { "Y" : "", "N" : "" }
+    			},
+            data: {
+                simpleData: {
+                    enable: true,
+                    rootPId: 1
+                }
             },
-            cascadeCheck : false
+            view: {
+        			txtSelectedEnable: true
+       	 	},
+            async: {
+                enable: true,
+                url: '${path }/resource/allTrees'
+            },
+            callback: {
+            		onAsyncSuccess: function(event, treeId, treeNode, msg) {
+            			progressLoad();
+            			var $$tree = $.fn.zTree.getZTreeObj(treeId);
+            			$$tree.expandAll(true);
+                     $.post( '${path }/role/findResourceIdListByRoleId', {
+                         id : '${id}'
+                     }, function(result) {
+                         var ids;
+                         if (result.success == true && result.obj != undefined) {
+                             ids = $.stringToList(result.obj + '');
+                         }
+                         if (ids.length > 0) {
+                             for ( var i = 0; i < ids.length; i++) {
+                            	     var nodes = $$tree.transformToArray($$tree.getNodes());
+                            	     for( var j =0; j < nodes.length; j++ ) {
+                            	    	 	var node = nodes[j];
+                            	    	 	if (node.id == ids[i]) {
+                            	    	 		$$tree.checkNode(node, true, false);
+                            	    	 	}
+                            	     }
+                             }
+                         }
+                     }, 'json');
+                    progressClose();
+	        		}
+            }
         });
 
         $('#roleGrantForm').form({
@@ -39,7 +58,8 @@
                 if (!isValid) {
                     progressClose();
                 }
-                var checknodes = resourceTree.tree('getChecked');
+                var $$tree = $.fn.zTree.getZTreeObj("resourceTree");
+                var checknodes = $$tree.getCheckedNodes(true);
                 var ids = [];
                 if (checknodes && checknodes.length > 0) {
                     for ( var i = 0; i < checknodes.length; i++) {
@@ -63,33 +83,18 @@
     });
 
     function checkAll() {
-        var nodes = resourceTree.tree('getChecked', 'unchecked');
-        if (nodes && nodes.length > 0) {
-            for ( var i = 0; i < nodes.length; i++) {
-                resourceTree.tree('check', nodes[i].target);
-            }
-        }
+    		var $$tree = $.fn.zTree.getZTreeObj("resourceTree");
+    		$$tree.checkAllNodes(true);
     }
     function uncheckAll() {
-        var nodes = resourceTree.tree('getChecked');
-        if (nodes && nodes.length > 0) {
-            for ( var i = 0; i < nodes.length; i++) {
-                resourceTree.tree('uncheck', nodes[i].target);
-            }
-        }
+    		var $$tree = $.fn.zTree.getZTreeObj("resourceTree");
+    		$$tree.checkAllNodes(false);
     }
     function checkInverse() {
-        var unchecknodes = resourceTree.tree('getChecked', 'unchecked');
-        var checknodes = resourceTree.tree('getChecked');
-        if (unchecknodes && unchecknodes.length > 0) {
-            for ( var i = 0; i < unchecknodes.length; i++) {
-                resourceTree.tree('check', unchecknodes[i].target);
-            }
-        }
-        if (checknodes && checknodes.length > 0) {
-            for ( var i = 0; i < checknodes.length; i++) {
-                resourceTree.tree('uncheck', checknodes[i].target);
-            }
+    		var $$tree = $.fn.zTree.getZTreeObj("resourceTree");
+    		var nodes = $$tree.transformToArray($$tree.getNodes());
+        for ( var i = 0; i < nodes.length; i++) {
+        		$$tree.checkNode(nodes[i], !nodes[i].checked, true);
         }
     }
 </script>
@@ -98,7 +103,7 @@
         <div class="well well-small">
             <form id="roleGrantForm" method="post">
                 <input name="id" type="hidden"  value="${id}" readonly="readonly">
-                <ul id="resourceTree"></ul>
+                <ul id="resourceTree" class="ztree"></ul>
                 <input id="resourceIds" name="resourceIds" type="hidden" />
             </form>
         </div>

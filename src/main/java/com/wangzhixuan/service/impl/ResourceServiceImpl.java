@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.wangzhixuan.commons.result.Tree;
+import com.wangzhixuan.commons.result.ZTree;
 import com.wangzhixuan.commons.shiro.ShiroUser;
 import com.wangzhixuan.mapper.ResourceMapper;
 import com.wangzhixuan.mapper.RoleMapper;
@@ -54,50 +54,52 @@ public class ResourceServiceImpl extends ServiceImpl<ResourceMapper, Resource> i
     }
     
     @Override
-    public List<Tree> selectAllMenu() {
-        List<Tree> trees = new ArrayList<Tree>();
+    public List<ZTree> selectAllMenu() {
+        List<ZTree> trees = new ArrayList<ZTree>();
         // 查询所有菜单
         List<Resource> resources = this.selectByType(RESOURCE_MENU);
         if (resources == null) {
             return trees;
         }
         for (Resource resource : resources) {
-            Tree tree = new Tree();
+        		ZTree tree = new ZTree();
             tree.setId(resource.getId());
-            tree.setPid(resource.getPid());
-            tree.setText(resource.getName());
-            tree.setIconCls(resource.getIcon());
+            tree.setpId(resource.getPid());
+            tree.setName(resource.getName());
+            tree.setIconSkin(resource.getIcon());
             tree.setAttributes(resource.getUrl());
-            tree.setState(resource.getOpened());
+            Integer opened = resource.getOpened();
+            tree.setOpen(null != opened && opened == 1);
             trees.add(tree);
         }
         return trees;
     }
     
     @Override
-    public List<Tree> selectAllTree() {
+    public List<ZTree> selectAllTree() {
         // 获取所有的资源 tree形式，展示
-        List<Tree> trees = new ArrayList<Tree>();
+        List<ZTree> trees = new ArrayList<ZTree>();
         List<Resource> resources = this.selectAll();
         if (resources == null) {
             return trees;
         }
         for (Resource resource : resources) {
-            Tree tree = new Tree();
+    			ZTree tree = new ZTree();
             tree.setId(resource.getId());
-            tree.setPid(resource.getPid());
-            tree.setText(resource.getName());
-            tree.setIconCls(resource.getIcon());
+            tree.setpId(resource.getPid());
+            tree.setName(resource.getName());
+            tree.setIconSkin(resource.getIcon());
             tree.setAttributes(resource.getUrl());
-            tree.setState(resource.getOpened());
+            Integer opened = resource.getOpened();
+            tree.setOpen(null != opened && opened == 1);
             trees.add(tree);
         }
         return trees;
     }
     
     @Override
-    public List<Tree> selectTree(ShiroUser shiroUser) {
-        List<Tree> trees = new ArrayList<Tree>();
+    public List<ZTree> selectTree(ShiroUser shiroUser) {
+        List<ZTree> trees = new ArrayList<ZTree>();
         // shiro中缓存的用户角色
         Set<String> roles = shiroUser.getRoles();
         if (roles == null) {
@@ -110,14 +112,15 @@ public class ResourceServiceImpl extends ServiceImpl<ResourceMapper, Resource> i
                 return trees;
             }
             for (Resource resource : resourceList) {
-                Tree tree = new Tree();
+    				ZTree tree = new ZTree();
                 tree.setId(resource.getId());
-                tree.setPid(resource.getPid());
-                tree.setText(resource.getName());
-                tree.setIconCls(resource.getIcon());
+                tree.setpId(resource.getPid());
+                tree.setName(resource.getName());
+                tree.setIconSkin(resource.getIcon());
                 tree.setAttributes(resource.getUrl());
+                Integer opened = resource.getOpened();
+                tree.setOpen(null != opened && opened == 1);
                 tree.setOpenMode(resource.getOpenMode());
-                tree.setState(resource.getOpened());
                 trees.add(tree);
             }
             return trees;
@@ -132,14 +135,15 @@ public class ResourceServiceImpl extends ServiceImpl<ResourceMapper, Resource> i
             return trees;
         }
         for (Resource resource : resourceLists) {
-            Tree tree = new Tree();
+			ZTree tree = new ZTree();
             tree.setId(resource.getId());
-            tree.setPid(resource.getPid());
-            tree.setText(resource.getName());
-            tree.setIconCls(resource.getIcon());
+            tree.setpId(resource.getPid());
+            tree.setName(resource.getName());
+            tree.setIconSkin(resource.getIcon());
             tree.setAttributes(resource.getUrl());
+            Integer opened = resource.getOpened();
+            tree.setOpen(null != opened && opened == 1);
             tree.setOpenMode(resource.getOpenMode());
-            tree.setState(resource.getOpened());
             trees.add(tree);
         }
         return trees;

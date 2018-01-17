@@ -2,11 +2,13 @@
 <%@ include file="/commons/global.jsp" %>
 <script type="text/javascript">
     $(function() {
-        $('#resourceAddPid').combotree({
+		$('#resourceAddPid').comboZTree({
             url : '${path }/resource/allTree',
-            parentField : 'pid',
-            lines : true,
-            panelHeight : 'auto'
+			check: {
+				enable: true,
+				chkStyle: "radio",
+				radioType: "all"
+			}
         });
 
         $('#resourceAddForm').form({

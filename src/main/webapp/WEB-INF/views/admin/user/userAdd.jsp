@@ -2,18 +2,21 @@
 <%@ include file="/commons/global.jsp" %>
 <script type="text/javascript">
     $(function() {
-        $('#userAddOrganizationId').combotree({
+    		$('#userAddOrganizationId').comboZTree({
             url : '${path }/organization/tree',
-            parentField : 'pid',
-            lines : true,
-            panelHeight : 'auto'
+			check: {
+				enable: true,
+				chkStyle: "radio",
+				radioType: "all"
+			}
         });
 
-        $('#userAddRoleIds').combotree({
-            url: '${path }/role/tree',
-            multiple: true,
-            required: true,
-            panelHeight : 'auto'
+    		$('#userAddRoleIds').comboZTree({
+            url : '${path }/role/tree',
+            check: {
+            		enable: true,
+				chkboxType: {"Y":"", "N":""}
+			}
         });
 
         $('#userAddForm').form({
@@ -30,7 +33,7 @@
                 progressClose();
                 result = $.parseJSON(result);
                 if (result.success) {
-                    parent.$.modalDialog.openner_dataGrid.datagrid('reload');//之所以能在这里调用到parent.$.modalDialog.openner_dataGrid这个对象，是因为user.jsp页面预定义好了
+                		parent.organizationTree.reAsyncChildNodes(null, "refresh");//是因为user.jsp页面预定义好了
                     parent.$.modalDialog.handler.dialog('close');
                 } else {
                     var form = $('#userAddForm');
@@ -95,4 +98,8 @@
             </table>
         </form>
     </div>
+</div>
+
+<div id="menuContent" class="menuContent" style="display:none; position: absolute;">
+	<ul id="treeDemo" class="ztree" style="margin-top:0; width:180px; height: 300px;"></ul>
 </div>
