@@ -151,7 +151,7 @@
     function addResourceFun() {
         var node = resourceTreeGrid.treegrid('getSelected');
         var url = '${path }/resource/addPage'
-        if (node && rows.resourceType === 0) {
+        if (node && node.resourceType === 0) {
             url += '?pid=' + node.id;
         }
         parent.$.modalDialog({
