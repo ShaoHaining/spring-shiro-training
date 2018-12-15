@@ -6,7 +6,7 @@
     <packaging>war</packaging>
     <version>1.3.0</version>
     <name>spring-shiro-training Maven Webapp</name>
-    <url>http://shiro.dreamlu.net</url>
+    <url>http://demo.dreamlu.net</url>
 
     <properties>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>

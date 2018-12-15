@@ -149,11 +149,16 @@
     }
 
     function addResourceFun() {
+        var node = resourceTreeGrid.treegrid('getSelected');
+        var url = '${path }/resource/addPage'
+        if (node && rows.resourceType === 0) {
+            url += '?pid=' + node.id;
+        }
         parent.$.modalDialog({
             title : '添加',
             width : 500,
             height : 350,
-            href : '${path }/resource/addPage',
+            href : url,
             buttons : [ {
                 text : '添加',
                 handler : function() {

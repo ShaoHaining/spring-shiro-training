@@ -68,7 +68,8 @@ public class ResourceController extends BaseController {
      * @return
      */
     @GetMapping("/addPage")
-    public String addPage() {
+    public String addPage(Model model, Long pid) {
+        model.addAttribute("pid", pid);
         return "admin/resource/resourceAdd";
     }
 

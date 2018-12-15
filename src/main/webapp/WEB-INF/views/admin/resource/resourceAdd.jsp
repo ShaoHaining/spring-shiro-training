@@ -5,7 +5,8 @@
         $('#resourceAddPid').combotree({
             url : '${path }/resource/allTree',
             parentField : 'pid',
-            panelHeight : 'auto'
+            panelHeight : 'auto',
+            value : '${pid}'
         });
 
         $('#resourceAddForm').form({

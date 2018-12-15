@@ -62,7 +62,11 @@ Zcurd快速开发平台：https://gitee.com/515097842/zcurd
 
 ## 技术咨询
 <p>
-QQ群：523720304 &nbsp; 本地导入项目运行，账号：admin、test，密码：test。
+QQ群(`新`)：479710041  &nbsp;
+QQ群(`满`)：523720304 &nbsp;
+</p>
+<p>
+本地导入项目运行，账号：admin、test，密码：test。
 </p>
 <p>
 git地址：<a href="https://git.oschina.net/wangzhixuan/spring-shiro-training.git" target="_blank">https://git.oschina.net/wangzhixuan/spring-shiro-training.git</a>
