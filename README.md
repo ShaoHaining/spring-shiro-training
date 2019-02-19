@@ -87,7 +87,9 @@ git地址：<a href="https://git.oschina.net/wangzhixuan/spring-shiro-training.g
 ## VIP群（永久）
 ~~第一波 捐助任意金额入VIP群~~
 
-第二波 捐助￥99（限时）~~￥199~~入VIP群
+~~第二波 捐助￥99（限时）~~
+
+第三波 捐助￥199入VIP群
 
 `注意`: 捐助后联系QQ: `596392912`
 
