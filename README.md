@@ -87,24 +87,6 @@ git地址：<a href="https://git.oschina.net/wangzhixuan/spring-shiro-training.g
 
 `回音哥` 10元、`青菜萝卜白菜` 88.88元、`soft_xiang` 5元、`王旭民` 10元、`不在随意` 1元、`程序人生` 100元、`张恒` 20
 
-## VIP群（永久）
-~~第一波 捐助任意金额入VIP群~~
-
-~~第二波 捐助￥99（限时）~~
-
-第三波 捐助￥199入VIP群
-
-`注意`: 捐助后联系QQ: `596392912`
-
-#### VIP权益：
-1. spring boot版（maven + spring boot + spring security + thymeleaf）
-
-2. 技术资料共享
-
-3. spring cloud脚手架（改造中）
-
-4. 更多私有Git资源
-
 #### VIP boot版 Demo
 - 地址：http://demo.dreamlu.net
 
@@ -113,3 +95,9 @@ git地址：<a href="https://git.oschina.net/wangzhixuan/spring-shiro-training.g
 ## License
 
 ( The MIT License )
+
+## 微信公众号
+
+![如梦技术](docs/dreamlu-weixin.jpg)
+
+精彩内容每日推荐！
