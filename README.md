@@ -16,7 +16,7 @@
 另外欢迎`Pull Requests`，和我们一起完善该项目！
 
 ## 推荐
-Spring boot 高效开发之 Mica 工具集：[https://gitee.com/596392912/mica](https://gitee.com/596392912/mica)
+Spring boot 高效开发之 **Mica** 工具集：[https://gitee.com/596392912/mica](https://gitee.com/596392912/mica)
 
 ## 技术和功能
 > Spring-cache
@@ -77,10 +77,6 @@ git地址：<a href="https://git.oschina.net/wangzhixuan/spring-shiro-training.g
 <p>
 欢迎star、fork，不好的地方，接受狂喷，本着共同学习的心态。
 </p>
-
-## 捐助共勉
- <img src="https://gitee.com/uploads/images/2018/0311/153544_5afb12b1_372.jpeg" width="250px"/>
- <img src="https://gitee.com/uploads/images/2018/0311/153556_679db579_372.jpeg" width="250px"/>
 
 ## 捐助记录
 `silent`  5元、`truetxw` 5元、`福地` 10元、`AfenG` 10元、`Sky` 50元、`昆明-TOM` 10元、`王刚` 20元、`slieery` 10元、
