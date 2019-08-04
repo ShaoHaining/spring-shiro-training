@@ -83,7 +83,11 @@ git地址：<a href="https://git.oschina.net/wangzhixuan/spring-shiro-training.g
 
 `回音哥` 10元、`青菜萝卜白菜` 88.88元、`soft_xiang` 5元、`王旭民` 10元、`不在随意` 1元、`程序人生` 100元、`张恒` 20
 
-#### VIP boot版 Demo
+#### boot版 已经开源
+- Gitee（码云）：https://gitee.com/596392912/dream-security
+
+- Github：https://github.com/lets-mica/dream-security
+
 - 地址：http://demo.dreamlu.net
 
 - 账号vs密码：test、test
